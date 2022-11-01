@@ -1,0 +1,44 @@
+.img-logo {
+  margin: 0 auto;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin: 7% auto;
+  text-align: center;
+  width: 25%;
+  font-size: 1.2rem;
+}
+
+.register-inp {
+  height: 30px;
+  padding: 15px;
+  font-size: 1.2rem;
+  border: 0.5px solid rgb(223, 216, 216);
+  border-radius: 5px;
+}
+
+.register-inp:hover {
+  outline: 0.5px solid rgb(118, 118, 186);
+}
+
+.register-btn {
+  color: #fff;
+  background-color: rgb(75, 75, 165);
+  border: none;
+  padding: 15px 0;
+  font-size: 1.2rem;
+}
+
+.login-link {
+  color: rgb(18, 18, 118);
+  text-decoration: underline;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.login {
+  background-color: #049c46;
+}

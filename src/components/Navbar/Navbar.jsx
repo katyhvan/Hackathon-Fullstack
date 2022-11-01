@@ -27,13 +27,13 @@ const Navbar = () => {
   return (
     <div className="header">
       <div className="navbar-link">
-        <img src={logo} alt="logo image" className="logo" />
+        <img src={logo} alt="logo" className="logo" />
         <h2 className="logo-title">Medemy</h2>
       </div>
       <nav>
         <ul className="navbar-menu">
           <li className="navbar-item" onClick={() => navigate("/")}>
-            About us
+            Home
           </li>
           <li className="navbar-item">
             <NavItemDropDown />
@@ -46,11 +46,15 @@ const Navbar = () => {
       <div className="navbar-right">
         <ul className="right-menu">
           {pages.map((page) => (
-            <li key={page.type} onClick={() => navigate(page.path)}>
+            <li
+              key={page.type}
+              onClick={() => navigate(page.path)}
+              className="right-item"
+            >
               {page.type}
             </li>
           ))}
-          {/* <li>Logout</li> */}
+          <li className="right-item">Logout</li>
         </ul>
       </div>
     </div>

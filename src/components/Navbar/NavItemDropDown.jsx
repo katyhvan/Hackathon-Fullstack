@@ -31,6 +31,8 @@ function NavItemDropDown() {
         onClose={handleClose}
         TransitionComponent={Fade}
       >
+        <MenuItem onClick={() => navigate("/courses")}>All</MenuItem>
+        <Divider sx={{ my: 0.5 }} />
         <MenuItem onClick={() => navigate("/js")}>JavaScript</MenuItem>
         <Divider sx={{ my: 0.5 }} />
         <MenuItem onClick={() => navigate("/python")}>Python</MenuItem>

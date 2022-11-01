@@ -62,7 +62,7 @@ const PAGES_ROUTES = [
   },
   {
     link: "/js",
-    element: <JSPage />,
+    element: <CoursesPage />,
     id: 10,
   },
   {
