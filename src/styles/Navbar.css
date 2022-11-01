@@ -26,6 +26,18 @@
   align-items: center;
 }
 
+.burger-menu {
+  display: none;
+}
+
+.burger-btn {
+  width: 37px;
+  height: 2px;
+  background-color: #fff;
+  border-radius: 5px;
+  margin-bottom: 7px;
+}
+
 .navbar-menu {
   display: flex;
   flex-wrap: wrap;
@@ -54,7 +66,6 @@
 .navbar-right {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
   color: #fff;
 }
 
@@ -68,4 +79,53 @@
 
 .right-item {
   cursor: pointer;
+  margin-right: 10px;
+}
+
+.logout-icon {
+  display: none;
+}
+
+@media (max-width: 800px) {
+  .navbar-menu {
+    display: none;
+  }
+  .burger-menu {
+    display: block;
+    margin-left: 15px;
+  }
+  .header {
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 590px) {
+  .logo-title {
+    font-size: 20px;
+  }
+  .register {
+    display: none;
+  }
+  .logout {
+    display: none;
+  }
+  .logout-icon {
+    display: block;
+    margin-right: 10px;
+  }
+}
+
+@media (max-width: 395px) {
+  .logo {
+    display: none;
+  }
+  .logo-title {
+    margin-left: 10px;
+  }
+  .burger-menu {
+    width: 25px;
+  }
+  .right-item {
+    margin-right: 5px;
+  }
 }

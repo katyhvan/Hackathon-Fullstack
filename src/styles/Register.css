@@ -13,6 +13,7 @@
 }
 
 .register-inp {
+  min-width: 150px;
   height: 30px;
   padding: 15px;
   font-size: 1.2rem;
