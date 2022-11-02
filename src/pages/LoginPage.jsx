@@ -9,11 +9,22 @@ import "../styles/Register.css";
 const LoginPage = () => {
   const navigate = useNavigate();
 
-  const { error, setError, loading } = useAuth();
+  const { error, setError, loading, login } = useAuth();
 
-  const [userName, setUserName] = useState("");
-  const [email, setEmail] = useState("");
+  const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
+
+  function handleLogin() {
+    if (!username.trim() || !password.trim()) {
+      alert("Some inputs are empty!");
+      return;
+    } else {
+      let formData = new FormData();
+      formData.append("username", username);
+      formData.append("password", password);
+      login(formData, username, navigate);
+    }
+  }
 
   useEffect(() => {
     setError(false);
@@ -25,7 +36,7 @@ const LoginPage = () => {
 
   return (
     <>
-      <div className="register-form">
+      <div className="login-form">
         <img
           src={logo}
           alt="logo"
@@ -39,25 +50,22 @@ const LoginPage = () => {
         {error ? <h3>{error}</h3> : null}
         <input
           type="text"
-          className="register-inp"
+          className="login-inp"
           placeholder="Username"
+          value={username}
           onChange={(e) => setUserName(e.target.value)}
         />
         <input
-          type="email"
-          className="register-inp"
-          placeholder="E-Mail"
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
           type="password"
-          className="register-inp"
+          className="login-inp"
           placeholder="Password"
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button className="register-btn login">Login</button>
+        <button className="login-btn login" onClick={handleLogin}>
+          Login
+        </button>
         <p>
-          If you don't have account, please
+          If you don't have an account, please
           <span className="login-link" onClick={() => navigate("/register")}>
             Sign up
           </span>

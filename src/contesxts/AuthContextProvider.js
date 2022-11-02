@@ -4,8 +4,7 @@ import React, { useContext, useState } from "react";
 const authContext = React.createContext();
 export const useAuth = () => useContext(authContext);
 
-// const API = "http://35.184.19.231/";
-const API = "http://localhost:5050/users";
+const API = "http://34.28.29.118/api/v1/";
 
 const AuthContextProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(false);
@@ -16,10 +15,7 @@ const AuthContextProvider = ({ children }) => {
     setLoading(true);
 
     try {
-      // const res = await axios.post(`${API}accounts/register/`, formData);
-
-      const res = await axios.post(API, formData);
-
+      const res = await axios.post(`${API}accounts/register/`, formData);
       navigate("/login");
     } catch (err) {
       setError(Object.values(err.response.data).flat(2));
@@ -29,19 +25,45 @@ const AuthContextProvider = ({ children }) => {
     }
   }
 
-  async function login(formData, email, navigate) {
+  async function login(formData, username, navigate) {
     setLoading();
 
     try {
-      const res = await axios.post(API, formData);
-      localStorage.setItem("users", currentUser);
-      localStorage.setItem("email", email);
-      setCurrentUser(email);
+      const res = await axios.post(`${API}accounts/login/`, formData);
+      localStorage.setItem("token", JSON.stringify(res.data));
+      localStorage.setItem("username", username);
+      setCurrentUser(username);
       navigate("/");
-    } catch (error) {
-      setError("Error");
+    } catch (err) {
+      setError([err.response.data.detail]);
     } finally {
+      setLoading();
     }
+  }
+
+  async function checkAuth() {
+    let token = JSON.parse(localStorage.getItem("token"));
+
+    try {
+      let Autorization = `Bearer${token.access}`;
+      let res = await axios.post(
+        `${API}accounts/logout/`,
+        { refresh: token.refresh },
+        { headers: { Autorization } }
+      );
+
+      localStorage.setItem(
+        "token",
+        JSON.stringify({ refresh: token.refresh, access: token.access })
+      );
+    } catch (error) {}
+  }
+
+  async function handleLogout(navigate) {
+    localStorage.removeItem("token");
+    localStorage.removeItem("username");
+    setCurrentUser(false);
+    navigate("/");
   }
 
   const values = {
@@ -54,6 +76,8 @@ const AuthContextProvider = ({ children }) => {
     setLoading,
     register,
     login,
+    handleLogout,
+    checkAuth,
   };
 
   return (

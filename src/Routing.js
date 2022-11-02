@@ -5,14 +5,15 @@ import HomePage from "./pages/HomePage";
 import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
 import CoursesPage from "./pages/CoursesPage";
-import JSPage from "./pages/JSPage";
-import PhpPage from "./pages/PhpPage";
-import PythonPage from "./pages/PythonPage";
+// import JSPage from "./pages/JSPage";
+// import PhpPage from "./pages/PhpPage";
+// import PythonPage from "./pages/PythonPage";
 import CourseDetails from "./pages/CourseDetails";
 import EditCourse from "./pages/EditCourse";
 import CartPage from "./pages/CartPage";
 import FavoritesPage from "./pages/FavoritesPage";
 import NotFoundPage from "./pages/NotFoundPage";
+import AdminPage from "./pages/AdminPage";
 
 const PAGES_ROUTES = [
   {
@@ -61,24 +62,9 @@ const PAGES_ROUTES = [
     id: 9,
   },
   {
-    link: "/js",
-    element: <CoursesPage />,
+    link: "/admin",
+    element: <AdminPage />,
     id: 10,
-  },
-  {
-    link: "/python",
-    element: <PythonPage />,
-    id: 11,
-  },
-  {
-    link: "/php",
-    element: <PhpPage />,
-    id: 12,
-  },
-  {
-    link: "/c+",
-    element: <CoursesPage />,
-    id: 13,
   },
 ];
 

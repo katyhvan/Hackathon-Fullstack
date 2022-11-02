@@ -11,33 +11,21 @@ const RegisterPage = () => {
 
   const { error, setError, loading, register } = useAuth();
 
-  const [userName, setUserName] = useState("");
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  // function handleSave() {
-  //   if (!userName.trim() || !email.trim() || !password.trim()) {
-  //     alert("Some inputs are empty!");
-  //     return;
-  //   } else {
-  //     let formData = new FormData();
-  //     formData.append("userName", userName);
-  //     formData.append("email", email);
-  //     formData.append("password", password);
-  //     register(formData, navigate);
-  //   }
-  // }
-
   function handleSave() {
-    if (!userName.trim() || !email.trim() || !password.trim()) {
+    if (!username.trim() || !email.trim() || !password.trim()) {
       alert("Some inputs are empty!");
       return;
+    } else if (password.length < 8) {
+      alert("Password must contain 8 symbols");
     } else {
-      let formData = {
-        userName,
-        email,
-        password,
-      };
+      let formData = new FormData();
+      formData.append("username", username);
+      formData.append("email", email);
+      formData.append("password", password);
       register(formData, navigate);
       alert("You registered successfully!");
     }
@@ -67,7 +55,8 @@ const RegisterPage = () => {
           type="text"
           className="register-inp"
           placeholder="Username"
-          onChange={(e) => setUserName(e.target.value)}
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
         />
         <input
           type="email"

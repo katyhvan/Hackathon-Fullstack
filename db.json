@@ -11,6 +11,19 @@
       "email": "sam@gmail.com",
       "password": "123",
       "id": 2
+    },
+    {
+      "userName": "Tom",
+      "email": "tom@gmail.com",
+      "password": "456",
+      "id": 3
+    },
+    {
+      "userName": "Jack",
+      "email": "jack@gmail.com",
+      "password": "789",
+      "id": 4
     }
-  ]
+  ],
+  "courses": []
 }

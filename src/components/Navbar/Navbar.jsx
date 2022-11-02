@@ -1,22 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import logo from "../../assets/logo1.png";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../contesxts/AuthContextProvider";
 import NavItemDropDown from "./NavItemDropDown";
 import MenuDropdown from "./MenuDropdown";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import Avatar from "@mui/material/Avatar";
-import { Logout } from "@mui/icons-material";
+// import { Logout } from "@mui/icons-material";
 
 import "../../styles/Navbar.css";
 
 const Navbar = () => {
-  const navigate = useNavigate();
+  const { currentUser, checkAuth, handleLogout } = useAuth();
   const [menuActive, setMenuActive] = useState();
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      checkAuth();
+    }
+  }, []);
 
   return (
     <>
       <div className="header">
-        <div className="navbar-link">
+        <div className="navbar-link" onClick={() => navigate("/")}>
           <img src={logo} alt="logo" className="logo" />
           <h2 className="logo-title">Medemy</h2>
         </div>
@@ -36,6 +45,11 @@ const Navbar = () => {
             <li className="navbar-item" onClick={() => navigate("/favorites")}>
               Favorites
             </li>
+            {currentUser ? (
+              <li className="navbar-item" onClick={() => navigate("/admin")}>
+                Add course
+              </li>
+            ) : null}
           </ul>
         </nav>
         <div className="navbar-right">
@@ -47,6 +61,8 @@ const Navbar = () => {
             <Avatar
               className="right-item avatar"
               onClick={() => navigate("/login")}
+              src={currentUser}
+              alt={currentUser}
             />
             <li
               className="right-item register"
@@ -54,8 +70,13 @@ const Navbar = () => {
             >
               Sign Up
             </li>
-            <li className="right-item logout">Logout</li>
-            <Logout className="logout-icon" />
+            <li
+              className="right-item logout"
+              onClick={() => handleLogout(navigate)}
+            >
+              Logout
+            </li>
+            {/* <Logout className="logout-icon" /> */}
           </ul>
         </div>
       </div>
