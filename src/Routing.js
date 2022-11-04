@@ -9,11 +9,12 @@ import CoursesPage from "./pages/CoursesPage";
 // import PhpPage from "./pages/PhpPage";
 // import PythonPage from "./pages/PythonPage";
 import CourseDetails from "./pages/CourseDetails";
-import EditCourse from "./pages/EditCourse";
+import EditCoursePage from "./pages/EditCoursePage";
 import CartPage from "./pages/CartPage";
 import FavoritesPage from "./pages/FavoritesPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import AdminPage from "./pages/AdminPage";
+import RestorePage from "./pages/RestorePage";
 
 const PAGES_ROUTES = [
   {
@@ -43,7 +44,7 @@ const PAGES_ROUTES = [
   },
   {
     link: "/edit/:id",
-    element: <EditCourse />,
+    element: <EditCoursePage />,
     id: 6,
   },
   {
@@ -65,6 +66,11 @@ const PAGES_ROUTES = [
     link: "/admin",
     element: <AdminPage />,
     id: 10,
+  },
+  {
+    link: "/restore",
+    element: <RestorePage />,
+    id: 11,
   },
 ];
 

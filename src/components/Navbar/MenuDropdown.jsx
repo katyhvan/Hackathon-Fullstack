@@ -28,7 +28,7 @@ const MenuDropdown = ({ active, setActive }) => {
   return (
     <div
       className={active ? "menu-dropdown active" : "menu-dropdown"}
-      onCLick={() => setActive(false)}
+      onClick={() => setActive(false)}
     >
       {pages.map((page) => (
         <div key={page.type} onClick={() => navigate(page.path)}>

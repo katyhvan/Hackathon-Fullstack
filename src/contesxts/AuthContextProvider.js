@@ -1,3 +1,4 @@
+import { MarkEmailUnread } from "@mui/icons-material";
 import axios from "axios";
 import React, { useContext, useState } from "react";
 
@@ -33,6 +34,7 @@ const AuthContextProvider = ({ children }) => {
       localStorage.setItem("token", JSON.stringify(res.data));
       localStorage.setItem("username", username);
       setCurrentUser(username);
+      alert(username);
       navigate("/");
     } catch (err) {
       setError([err.response.data.detail]);
@@ -45,7 +47,7 @@ const AuthContextProvider = ({ children }) => {
     let token = JSON.parse(localStorage.getItem("token"));
 
     try {
-      let Autorization = `Bearer${token.access}`;
+      let Autorization = `Token ${token.access}`;
       let res = await axios.post(
         `${API}accounts/logout/`,
         { refresh: token.refresh },
@@ -66,6 +68,24 @@ const AuthContextProvider = ({ children }) => {
     navigate("/");
   }
 
+  async function getMail(formData, navigate) {
+    setLoading(true);
+
+    try {
+      const res = await axios.post(`${API}accounts/forgot/`, formData);
+      navigate("/restore");
+      alert("Code has been sent to your E-Mail");
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async function passRecovery(formData, navigate) {
+    const res = await axios.post(`${API}accounts/restore/`, formData);
+    navigate("/");
+    alert("Your password has been recovered!");
+  }
+
   const values = {
     currentUser,
     error,
@@ -78,6 +98,8 @@ const AuthContextProvider = ({ children }) => {
     login,
     handleLogout,
     checkAuth,
+    getMail,
+    passRecovery,
   };
 
   return (

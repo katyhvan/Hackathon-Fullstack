@@ -1,61 +1,92 @@
-import { Category } from "@mui/icons-material";
 import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { coursesContext } from "../../contesxts/CoursesContextProvider";
 
+import "../../styles/AddCourse.css";
+
 const AddCourse = () => {
   const navigate = useNavigate();
 
-  const { courses, addCourse } = useContext(coursesContext);
+  const { addCourse, categories, getCategories } = useContext(coursesContext);
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
-  const [video, setVideo] = useState(null);
+  const [image, setImage] = useState(null);
 
-  // useEffect(() => {
-  //   getCategories();
-  // }, []);
+  useEffect(() => {
+    getCategories();
+  }, []);
 
   function handleAdd() {
+    if (!title.trim() || !description.trim() || !price.trim()) {
+      alert("Some inputs are empty!");
+      return;
+    }
+    alert(category);
     let newCourse = new FormData();
-    newCourse.append("video", video);
+    newCourse.append("image", image);
     newCourse.append("title", title);
     newCourse.append("description", description);
     newCourse.append("price", price);
     newCourse.append("category", category);
     addCourse(newCourse, navigate);
+    alert("Successfully added new course!");
+
+    setTitle("");
+    setDescription("");
+    setPrice("");
+    setCategory("");
+    setImage("");
   }
 
   return (
     <>
-      <div>
-        <h2>AddCourse</h2>
+      <div className="add-block">
+        <h2 className="add-title">Your Course</h2>
         <input
+          className="add-inp"
           type="text"
           value={title}
           placeholder="Title"
           onChange={(e) => setTitle(e.target.value)}
         />
         <input
+          className="add-inp"
           type="text"
           value={description}
           placeholder="Description"
           onChange={(e) => setDescription(e.target.value)}
         />
         <input
-          type="text"
+          className="add-inp"
+          type="number"
+          value={price}
           placeholder="Price"
           onChange={(e) => setPrice(e.target.value)}
         />
-
+        <select
+          className="chooseCategory"
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+        >
+          <option>Choose category</option>
+          {categories?.map((item) => (
+            <option key={item.id} value={item.id}>
+              {item.title}
+            </option>
+          ))}
+        </select>
         <input
-          type="text"
-          placeholder="Video"
-          onChange={(e) => setVideo(e.target.files)}
+          className="add-inp"
+          type="file"
+          accept="image/*"
+          onChange={(e) => setImage(e.target.files[0])}
         />
-        <button onClick={handleAdd}>Add Course</button>
+        <button className="add-btn" onClick={handleAdd}>
+          Add
+        </button>
       </div>
     </>
   );

@@ -14,6 +14,8 @@ const Navbar = () => {
   const { currentUser, checkAuth, handleLogout } = useAuth();
   const [menuActive, setMenuActive] = useState();
 
+  // alert(currentUser);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -61,8 +63,14 @@ const Navbar = () => {
             <Avatar
               className="right-item avatar"
               onClick={() => navigate("/login")}
+              // check this
               src={currentUser}
               alt={currentUser}
+              style={
+                currentUser
+                  ? { backgroundColor: "#D87945" }
+                  : { backgroundColor: "#b2d8b2" }
+              }
             />
             <li
               className="right-item register"
@@ -76,7 +84,6 @@ const Navbar = () => {
             >
               Logout
             </li>
-            {/* <Logout className="logout-icon" /> */}
           </ul>
         </div>
       </div>

@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 
 const EditCourse = () => {
   return (
     <>
-      <div>EditCourse</div>
+      <div>EditeCourse</div>
     </>
   );
 };

@@ -14,18 +14,29 @@ const RegisterPage = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [password2, setPassword2] = useState("");
 
   function handleSave() {
-    if (!username.trim() || !email.trim() || !password.trim()) {
+    if (
+      !username.trim() ||
+      !email.trim() ||
+      !password.trim() ||
+      !password2.trim()
+    ) {
       alert("Some inputs are empty!");
       return;
-    } else if (password.length < 8) {
+    } else if (password.length < 8 || password2.length < 8) {
       alert("Password must contain 8 symbols");
+      return;
+    } else if (password !== password2) {
+      alert("Password and password confirmation don't match!");
+      return;
     } else {
       let formData = new FormData();
       formData.append("username", username);
       formData.append("email", email);
       formData.append("password", password);
+      formData.append("password2", password2);
       register(formData, navigate);
       alert("You registered successfully!");
     }
@@ -62,19 +73,28 @@ const RegisterPage = () => {
           type="email"
           className="register-inp"
           placeholder="E-Mail"
+          value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
           type="password"
           className="register-inp"
           placeholder="Password"
+          value={password}
           onChange={(e) => setPassword(e.target.value)}
+        />
+        <input
+          type="password"
+          className="register-inp"
+          placeholder="Password Confirmation"
+          value={password2}
+          onChange={(e) => setPassword2(e.target.value)}
         />
         <button className="register-btn" onClick={handleSave}>
           Sign Up
         </button>
         <p>
-          If you already have one account, please
+          Already have an account
           <span className="login-link" onClick={() => navigate("/login")}>
             Login
           </span>
