@@ -78,11 +78,10 @@ const CoursesContextProvider = ({ children }) => {
           Authorization,
         },
       };
-
       const res = await axios(`${API}categories/`, config);
       dispatch({
         type: "GET_CATEGORIES",
-        payload: res.data.results,
+        payload: res.data,
       });
     } catch (err) {
       console.log(err);

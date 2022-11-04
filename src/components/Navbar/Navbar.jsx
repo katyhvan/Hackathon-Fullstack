@@ -14,8 +14,6 @@ const Navbar = () => {
   const { currentUser, checkAuth, handleLogout } = useAuth();
   const [menuActive, setMenuActive] = useState();
 
-  // alert(currentUser);
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -23,6 +21,14 @@ const Navbar = () => {
       checkAuth();
     }
   }, []);
+
+  const token = JSON.parse(localStorage.getItem("token"));
+
+  function logout() {
+    const formData = new FormData();
+    formData.append("refresh", token.refresh);
+    handleLogout(formData, navigate);
+  }
 
   return (
     <>
@@ -64,8 +70,8 @@ const Navbar = () => {
               className="right-item avatar"
               onClick={() => navigate("/login")}
               // check this
-              src={currentUser}
-              alt={currentUser}
+              // src={currentUser}
+              // alt={currentUser}
               style={
                 currentUser
                   ? { backgroundColor: "#D87945" }
@@ -78,10 +84,7 @@ const Navbar = () => {
             >
               Sign Up
             </li>
-            <li
-              className="right-item logout"
-              onClick={() => handleLogout(navigate)}
-            >
+            <li className="right-item logout" onClick={logout}>
               Logout
             </li>
           </ul>

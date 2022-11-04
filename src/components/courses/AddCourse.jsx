@@ -18,6 +18,7 @@ const AddCourse = () => {
   useEffect(() => {
     getCategories();
   }, []);
+  // alert(categories);
 
   function handleAdd() {
     if (!title.trim() || !description.trim() || !price.trim()) {

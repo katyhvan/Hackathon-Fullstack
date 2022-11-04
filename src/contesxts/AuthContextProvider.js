@@ -6,6 +6,7 @@ const authContext = React.createContext();
 export const useAuth = () => useContext(authContext);
 
 const API = "http://34.28.29.118/api/v1/";
+// http://34.28.29.118/api/v1/accounts/logout/
 
 const AuthContextProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(false);
@@ -34,7 +35,6 @@ const AuthContextProvider = ({ children }) => {
       localStorage.setItem("token", JSON.stringify(res.data));
       localStorage.setItem("username", username);
       setCurrentUser(username);
-      alert(username);
       navigate("/");
     } catch (err) {
       setError([err.response.data.detail]);
@@ -60,8 +60,18 @@ const AuthContextProvider = ({ children }) => {
       );
     } catch (error) {}
   }
-
-  async function handleLogout(navigate) {
+  // const token = JSON.parse(localStorage.getItem("token"));
+  // alert(token.refresh);
+  async function handleLogout(formData, navigate) {
+    const token = JSON.parse(localStorage.getItem("token"));
+    // const refresh = JSON.parse(localStorage.getItem("token", token.refresh));
+    const Authorization = `Token ${token.access}`;
+    const config = {
+      headers: {
+        Authorization,
+      },
+    };
+    let res = await axios.post(`${API}accounts/logout/`, formData, config);
     localStorage.removeItem("token");
     localStorage.removeItem("username");
     setCurrentUser(false);
