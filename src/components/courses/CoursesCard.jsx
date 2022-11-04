@@ -12,7 +12,7 @@ import "../../styles/CoursesCard.css";
 
 const CoursesCard = ({ item }) => {
   const { deleteCourses } = useContext(coursesContext);
-
+  alert(item);
   return (
     <>
       <Card className="card" sx={{ maxWidth: 450 }}>
@@ -44,7 +44,7 @@ const CoursesCard = ({ item }) => {
           <Button
             color="primary"
             variant="contained"
-            onClick={() => deleteCourses(item.id)}
+            onClick={() => deleteCourses(item.id.id)}
           >
             Delete
           </Button>
