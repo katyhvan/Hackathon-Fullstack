@@ -18,14 +18,13 @@ const AddCourse = () => {
   useEffect(() => {
     getCategories();
   }, []);
-  // alert(categories);
 
   function handleAdd() {
     if (!title.trim() || !description.trim() || !price.trim()) {
       alert("Some inputs are empty!");
       return;
     }
-    alert(category);
+
     let newCourse = new FormData();
     newCourse.append("image", image);
     newCourse.append("title", title);

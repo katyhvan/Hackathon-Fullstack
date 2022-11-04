@@ -1,5 +1,5 @@
 import React from "react";
-import Paper from "@mui/material/Paper";
+// import Paper from "@mui/material/Paper";
 import InputBase from "@mui/material/InputBase";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
@@ -10,7 +10,81 @@ import ebook from "../assets/ebook.png";
 
 import "../styles/HomePage.css";
 
+import { useTheme } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import MobileStepper from "@mui/material/MobileStepper";
+import Paper from "@mui/material/Paper";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
+import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
+import SwipeableViews from "react-swipeable-views";
+import { CardActionArea } from "@mui/material";
+import { autoPlay } from "react-swipeable-views-utils";
+import mentor1 from "../assets/img/mentor1.jpg";
+import mentor2 from "../assets/img/mentor2.jpg";
+import mentor3 from "../assets/img/mentor3.jpg";
+import mentor4 from "../assets/img/mentor4.jpg";
+import mentor5 from "../assets/img/mentor5.jpg";
+import mentor7 from "../assets/img/mentor7.jpg";
+import mentor8 from "../assets/img/mentor8.jpg";
+import mentor9 from "../assets/img/mentor9.jpg";
+
+const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
+
+const images = [
+  {
+    label: "Алексей Назаренко",
+    imgPath: mentor5,
+  },
+  {
+    label: "Айтегин Жаныбаев",
+    imgPath: mentor1,
+  },
+  {
+    label: "Эмир Ажанкимов",
+    imgPath: mentor9,
+  },
+  {
+    label: "Черноусова Полина",
+    imgPath: mentor4,
+  },
+  {
+    label: "Жунушов Аббас",
+    imgPath: mentor3,
+  },
+  {
+    label: "Кадыров Саламат",
+    imgPath: mentor2,
+  },
+
+  {
+    label: "Санжар Шадыбеков",
+    imgPath: mentor7,
+  },
+  {
+    label: "Анастасия Тузикова",
+    imgPath: mentor8,
+  },
+];
+
 const HomePage = () => {
+  const theme = useTheme();
+  const [activeStep, setActiveStep] = React.useState(0);
+  const maxSteps = images.length;
+
+  const handleNext = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+  };
+
+  const handleBack = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  };
+
+  const handleStepChange = (step) => {
+    setActiveStep(step);
+  };
+
   return (
     <>
       {/* content 1 start */}
@@ -27,12 +101,12 @@ const HomePage = () => {
               width: 400,
             }}
           >
-            {/* check this */}
-            {/* <IconButton sx={{ p: "10px" }} aria-label="menu">
+            <IconButton sx={{ p: "10px" }} aria-label="menu">
               <IconButton type="button" sx={{ p: "10px" }} aria-label="search">
                 <SearchIcon />
               </IconButton>
-            </IconButton> */}
+            </IconButton>
+
             <InputBase
               sx={{ ml: 1, flex: 1 }}
               placeholder="Search..."
@@ -52,6 +126,89 @@ const HomePage = () => {
       {/* content 1 end */}
       {/* content 2 start */}
       <div className="div-content2-block">
+        <h3 className="h3-content3">Our Mentors</h3>
+        <p className="par-content3">
+          Discover the perfect program in our courses with our team.
+        </p>
+        <div className="div-content3">
+          <Box sx={{ maxWidth: 800, flexGrow: 1 }}>
+            <Paper
+              square
+              elevation={0}
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                height: 50,
+                pl: 2,
+                bgcolor: "background.default",
+              }}
+            >
+              <Typography>{images[activeStep].label}</Typography>
+            </Paper>
+            <AutoPlaySwipeableViews
+              axis={theme.direction === "rtl" ? "x-reverse" : "x"}
+              index={activeStep}
+              onChangeIndex={handleStepChange}
+              enableMouseEvents
+            >
+              {images.map((image, index) => (
+                <div key={image.label}>
+                  {Math.abs(activeStep - index) <= 2 ? (
+                    <Box
+                      component="img"
+                      sx={{
+                        maxHeight: 780,
+                        display: "block",
+                        objectFit: "cover",
+                        width: "100%",
+                      }}
+                      src={image.imgPath}
+                      alt={image.label}
+                    />
+                  ) : null}
+                </div>
+              ))}
+            </AutoPlaySwipeableViews>
+            <MobileStepper
+              steps={maxSteps}
+              position="static"
+              activeStep={activeStep}
+              nextButton={
+                <Button
+                  size="small"
+                  onClick={handleNext}
+                  disabled={activeStep === maxSteps - 1}
+                >
+                  Next
+                  {theme.direction === "rtl" ? (
+                    <KeyboardArrowLeft />
+                  ) : (
+                    <KeyboardArrowRight />
+                  )}
+                </Button>
+              }
+              backButton={
+                <Button
+                  size="small"
+                  onClick={handleBack}
+                  disabled={activeStep === 0}
+                >
+                  {theme.direction === "rtl" ? (
+                    <KeyboardArrowRight />
+                  ) : (
+                    <KeyboardArrowLeft />
+                  )}
+                  Back
+                </Button>
+              }
+            />
+          </Box>
+        </div>
+      </div>
+      {/* content 2 end */}
+
+      {/* content 3 start */}
+      <div className="div-content3-block">
         <h2 className="h2-1">Why Study With Medemy</h2>
         <p className="par-content2-1">
           Discover Your Perfect Program In Our Courses.
@@ -90,7 +247,13 @@ const HomePage = () => {
           </div>
         </div>
       </div>
-      {/* content 2 end */}
+
+      {/* content 3 end */}
+
+      {/* content 4 start  */}
+      <div className="div-content4-block"></div>
+
+      {/* content 4 end  */}
     </>
   );
 };

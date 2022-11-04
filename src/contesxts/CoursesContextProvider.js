@@ -105,7 +105,9 @@ const CoursesContextProvider = ({ children }) => {
     }
   }
 
-  //update/details
+  //update
+
+  //details
   async function getCoursesDetails(id) {
     try {
       const token = JSON.parse(localStorage.getItem("token"));
@@ -116,6 +118,7 @@ const CoursesContextProvider = ({ children }) => {
         },
       };
       let res = await axios(`${API}courses/${id}`, config);
+    
       dispatch({
         type: "GET_COURSES_DETAILS",
         payload: res.data,
@@ -125,6 +128,7 @@ const CoursesContextProvider = ({ children }) => {
     }
   }
 
+  //save
   async function saveEditedCourse(newCourse) {
     await axios.patch(`${API}courses/${newCourse.id}`, newCourse);
     getCourses();

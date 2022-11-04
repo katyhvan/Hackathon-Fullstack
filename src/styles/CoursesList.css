@@ -1,5 +1,6 @@
 .courses-list {
   display: flex;
-  justify-content: space-around;
-  margin: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1px;
 }
