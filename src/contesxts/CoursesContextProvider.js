@@ -36,25 +36,98 @@ const API = "http://34.28.29.118/api/v1/";
 const CoursesContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, INIT_STATE);
 
-  //add logic
+  //read
+  async function getCourses() {
+    try {
+      const res = await axios(`${API}courses/`);
+      dispatch({
+        type: "GET_COURSES",
+        payload: res.data,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  //add
   async function addCourse(newCourse, navigate) {
     try {
-      const tokens = JSON.parse(localStorage.getItem("tokens"));
-      const Authorization = `Bearer ${tokens.access}`;
+      const token = JSON.parse(localStorage.getItem("token"));
+      const Authorization = `Token ${token.access}`;
       const config = {
         headers: {
           Authorization,
         },
       };
 
-      const res = await axios.post(`${API}course/lesson/`, newCourse, config);
-      alert("Successfully added new course!");
-      console.log(res);
+      const res = await axios.post(`${API}courses/`, newCourse, config);
       navigate("/courses");
-      // getCourses();
+      getCourses();
     } catch (err) {
       console.log(err);
     }
+  }
+
+  //categories
+  async function getCategories() {
+    try {
+      const token = JSON.parse(localStorage.getItem("token"));
+      const Authorization = `Token ${token.access}`;
+      const config = {
+        headers: {
+          Authorization,
+        },
+      };
+      const res = await axios(`${API}categories/`, config);
+      dispatch({
+        type: "GET_CATEGORIES",
+        payload: res.data,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  //delete
+  async function deleteCourses(id) {
+    try {
+      const token = JSON.parse(localStorage.getItem("token"));
+      const Authorization = `Token ${token.access}`;
+      const config = {
+        headers: {
+          Authorization,
+        },
+      };
+      await axios.delete(`${API}courses/${id}`, config);
+      getCourses();
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  //update/details
+  async function getCoursesDetails(id) {
+    try {
+      const token = JSON.parse(localStorage.getItem("token"));
+      const Authorization = `Token ${token.access}`;
+      const config = {
+        headers: {
+          Authorization,
+        },
+      };
+      let res = await axios(`${API}courses/${id}`, config);
+      dispatch({
+        type: "GET_COURSES_DETAILS",
+        payload: res.data,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async function saveEditedCourse(newCourse) {
+    await axios.patch(`${API}courses/${newCourse.id}`, newCourse);
+    getCourses();
   }
 
   return (
@@ -65,11 +138,11 @@ const CoursesContextProvider = ({ children }) => {
         coursesDetails: state.coursesDetails,
 
         addCourse,
-        // getCourses,
-        // getCategories,
-        // deleteCourses,
-        // getCoursesDetails,
-        // saveEditCourses,
+        getCourses,
+        getCategories,
+        deleteCourses,
+        getCoursesDetails,
+        saveEditedCourse,
       }}
     >
       {children}
@@ -78,111 +151,3 @@ const CoursesContextProvider = ({ children }) => {
 };
 
 export default CoursesContextProvider;
-
-// // read;
-// async function getCourses() {
-//   try {
-//     const tokens = JSON.parse(localStorage.getItem("tokens"));
-//     const Authorization = `Bearer ${tokens.access}`;
-//     const config = {
-//       headers: {
-//         Authorization,
-//       },
-//     };
-//     const res = await axios(
-//       `${API}/courses/${window.location.search}`,
-//       config
-//     );
-
-//     dispatch({
-//       type: "GET_COURSES",
-//       payload: res.data,
-//     });
-//   } catch (err) {
-//     console.log(err);
-//   }
-// }
-
-// //create
-// async function createCourse(newCourse, navigate) {
-//   try {
-//     const tokens = JSON.parse(localStorage.getItem("tokens"));
-//     const Authorization = `Bearer ${tokens.access}`;
-//     const config = {
-//       headers: {
-//         Authorization,
-//       },
-//     };
-
-//     const res = await axios.post(`${API}`, newCourse, config);
-//     alert("Successfully added new article!");
-//     console.log(res);
-//     navigate("/clothes");
-//     // getCourses();
-//   } catch (err) {
-//     console.log(err);
-//   }
-// }
-
-// function addCourse(newCourse) {}
-
-// async function getCategories() {
-//   try {
-//     const tokens = JSON.parse(localStorage.getItem("tokens"));
-//     const Authorization = `Bearer ${tokens.access}`;
-//     const config = {
-//       headers: {
-//         Authorization,
-//       },
-//     };
-//     const res = await axios(`${API}/category/list/`, config);
-//     dispatch({
-//       type: "GET_CATEGORIES",
-//       payload: res.data.results,
-//     });
-//   } catch (err) {
-//     console.log(err);
-//   }
-// }
-
-// async function deleteCourses(id) {
-//   try {
-//     const tokens = JSON.parse(localStorage.getItem("tokens"));
-//     const Authorization = `Bearer ${tokens.access}`;
-//     const config = {
-//       headers: {
-//         Authorization,
-//       },
-//     };
-//     await axios.delete(`${API}/courses/${id}`, config);
-//     getCourses();
-//   } catch (err) {
-//     console.log(err);
-//   }
-// }
-
-//details
-//   async function getCoursesDetails(id) {
-//     try {
-//     const tokens = JSON.parse(localStorage.getItem("tokens"));
-//     const Authorization = `Bearer ${tokens.access}`;
-//       const config = {
-//         headers: {
-//           Authorization,
-//         },
-//       };
-//       const res = await axios(`${API}/`, config);
-//     // console.log(data);
-//     dispatch({
-//       type: "GET_COURSES_DETAILS",
-//       payload: data,
-//     });
-//   } catch(err) {
-//     console.log(err);
-//   }
-// };
-
-// async function saveEditCourses(newCourse) {
-//   await axios.patch(`${API}/${newCourse.id}`, newCourse);
-//   getCourses();
-// }

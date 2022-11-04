@@ -22,6 +22,14 @@ const Navbar = () => {
     }
   }, []);
 
+  const token = JSON.parse(localStorage.getItem("token"));
+
+  function logout() {
+    const formData = new FormData();
+    formData.append("refresh", token.refresh);
+    handleLogout(formData, navigate);
+  }
+
   return (
     <>
       <div className="header">
@@ -61,8 +69,14 @@ const Navbar = () => {
             <Avatar
               className="right-item avatar"
               onClick={() => navigate("/login")}
-              src={currentUser}
-              alt={currentUser}
+              // check this
+              // src={currentUser}
+              // alt={currentUser}
+              style={
+                currentUser
+                  ? { backgroundColor: "#D87945" }
+                  : { backgroundColor: "#b2d8b2" }
+              }
             />
             <li
               className="right-item register"
@@ -70,13 +84,9 @@ const Navbar = () => {
             >
               Sign Up
             </li>
-            <li
-              className="right-item logout"
-              onClick={() => handleLogout(navigate)}
-            >
+            <li className="right-item logout" onClick={logout}>
               Logout
             </li>
-            {/* <Logout className="logout-icon" /> */}
           </ul>
         </div>
       </div>
