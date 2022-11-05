@@ -6,6 +6,7 @@ export const coursesContext = React.createContext();
 const INIT_STATE = {
   courses: [],
   categories: [],
+  levels: [],
   coursesDetails: null,
 };
 
@@ -26,6 +27,11 @@ function reducer(state = INIT_STATE, action) {
         ...state,
         coursesDetails: action.payload,
       };
+    case "GET_LEVEL":
+      return {
+        ...state,
+        levels: action.payload,
+      };
     default:
       return state;
   }
@@ -39,7 +45,7 @@ const CoursesContextProvider = ({ children }) => {
   //read
   async function getCourses() {
     try {
-      const res = await axios(`${API}courses/`);
+      const res = await axios(`${API}courses/${window.location.search}`);
       dispatch({
         type: "GET_COURSES",
         payload: res.data,
@@ -88,6 +94,19 @@ const CoursesContextProvider = ({ children }) => {
     }
   }
 
+  //levels
+  async function getLevel() {
+    try {
+      const res = await axios(`${API}level/`);
+      dispatch({
+        type: "GET_LEVEL",
+        payload: res.data.results,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   //delete
   async function deleteCourses(id) {
     try {
@@ -106,7 +125,6 @@ const CoursesContextProvider = ({ children }) => {
   }
 
   //update
-
   //details
   async function getCoursesDetails(id) {
     try {
@@ -118,7 +136,7 @@ const CoursesContextProvider = ({ children }) => {
         },
       };
       let res = await axios(`${API}courses/${id}`, config);
-    
+
       dispatch({
         type: "GET_COURSES_DETAILS",
         payload: res.data,
@@ -134,16 +152,28 @@ const CoursesContextProvider = ({ children }) => {
     getCourses();
   }
 
+  //favorites
+  function getFavorites() {}
+
+  function addToFavorites(favorite) {
+    let favorites = localStorage.getItem("favorites");
+
+    if (!favorites) {
+    }
+  }
+
   return (
     <coursesContext.Provider
       value={{
         courses: state.courses,
         categories: state.categories,
+        levels: state.levels,
         coursesDetails: state.coursesDetails,
 
         addCourse,
         getCourses,
         getCategories,
+        getLevel,
         deleteCourses,
         getCoursesDetails,
         saveEditedCourse,

@@ -2,11 +2,13 @@ import React, { useState, useContext, useEffect } from "react";
 import { coursesContext } from "../../contesxts/CoursesContextProvider";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import Loader from "../../components/Loader/Loader";
 
 const EditCourse = () => {
   const navigate = useNavigate();
 
   const {
+    categories,
     courseDetails,
     getCoursesDetails,
     saveEditedCourse,
@@ -27,11 +29,20 @@ const EditCourse = () => {
   }, [courseDetails]);
 
   function handleInp(e) {
-    let obj = {
-      ...course,
-      [e.target.name]: e.target.value,
-    };
-    setCourse(obj);
+    if ((e.target.name = "price")) {
+      let obj = {
+        ...course,
+        [e.target.name]: Number(e.target.value),
+      };
+      setCourse(obj);
+    } else {
+      let obj = {
+        ...course,
+        [e.target.name]: e.target.value,
+      };
+      setCourse(obj);
+      console.log(obj);
+    }
   }
 
   return (
@@ -46,20 +57,27 @@ const EditCourse = () => {
               name="title"
               value={course.title}
               placeholder="Title"
+              onChange={handleInp}
             />
             <input
               className="edit-inp"
               type="text"
               name="description"
               placeholder="Description"
+              onChange={handleInp}
             />
             <input
               className="edit-inp"
-              type="number"
+              type="text"
               name="price"
               placeholder="Price"
+              onChange={handleInp}
             />
-            {/* <select className="chooseCategory">
+            {/* <select
+              className="chooseCategory"
+              name="category"
+              onChange={handleInp}
+            >
               <option>Choose category</option>
               {categories?.map((item) => (
                 <option key={item.id} value={item.id}>
@@ -67,13 +85,13 @@ const EditCourse = () => {
                 </option>
               ))}
             </select> */}
-            {/* <input
+            <input
               className="edit-inp"
               type="file"
               name="image"
               accept="image/*"
-              onChange={(e) => setImage(e.target.files[0])}
-            /> */}
+              onChange={handleInp}
+            />
             <button
               className="edit-btn"
               onClick={() => {
@@ -86,7 +104,7 @@ const EditCourse = () => {
           </div>
         </>
       ) : (
-        <h3>Loading...</h3>
+        <Loader />
       )}
     </>
   );

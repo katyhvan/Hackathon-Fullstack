@@ -1,5 +1,4 @@
-import React from "react";
-// import Paper from "@mui/material/Paper";
+import React, { useState, useEffect } from "react";
 import InputBase from "@mui/material/InputBase";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
@@ -19,8 +18,9 @@ import Button from "@mui/material/Button";
 import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import SwipeableViews from "react-swipeable-views";
-import { CardActionArea } from "@mui/material";
 import { autoPlay } from "react-swipeable-views-utils";
+import { useNavigate } from "react-router-dom";
+
 import mentor1 from "../assets/img/mentor1.jpg";
 import mentor2 from "../assets/img/mentor2.jpg";
 import mentor3 from "../assets/img/mentor3.jpg";
@@ -46,15 +46,15 @@ const images = [
     imgPath: mentor9,
   },
   {
-    label: "Черноусова Полина",
+    label: "Полина Черноусова",
     imgPath: mentor4,
   },
   {
-    label: "Жунушов Аббас",
+    label: "Аббас Жунушов",
     imgPath: mentor3,
   },
   {
-    label: "Кадыров Саламат",
+    label: "Саламат Кадыров",
     imgPath: mentor2,
   },
 
@@ -69,6 +69,8 @@ const images = [
 ];
 
 const HomePage = () => {
+  const navigate = useNavigate();
+
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
   const maxSteps = images.length;
@@ -101,11 +103,11 @@ const HomePage = () => {
               width: 400,
             }}
           >
-            <IconButton sx={{ p: "10px" }} aria-label="menu">
+            {/* <IconButton sx={{ p: "10px" }} aria-label="menu">
               <IconButton type="button" sx={{ p: "10px" }} aria-label="search">
                 <SearchIcon />
               </IconButton>
-            </IconButton>
+            </IconButton> */}
 
             <InputBase
               sx={{ ml: 1, flex: 1 }}
@@ -113,6 +115,12 @@ const HomePage = () => {
               inputProps={{ "aria-label": "search..." }}
             />
           </Paper>
+          {/* <button
+            type="text"
+            onClick={() => navigate(`/courses/${window.location.search}`)}
+          >
+            Search
+          </button> */}
           <p className="par-1">Trending Search: JavaScript, Python, C++, C# </p>
         </div>
         <div>

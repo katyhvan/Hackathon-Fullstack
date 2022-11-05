@@ -15,8 +15,13 @@
   justify-content: space-between;
   margin-bottom: 0;
 }
+
 .div-2 {
   margin: 10%;
+}
+
+.div-2__text {
+  width: 50%;
 }
 .big-img {
   width: 80%;
@@ -46,7 +51,6 @@
 }
 .div-content2-1 {
   margin-top: 5%;
-  /* margin-left: 5%; */
   text-align: center;
   display: flex;
   justify-content: space-around;
@@ -115,6 +119,7 @@
 }
 .div-content2 {
   width: 450px;
+  font-family: "Roboto";
 }
 */ .div-1 {
   background: -webkit-linear-gradient(

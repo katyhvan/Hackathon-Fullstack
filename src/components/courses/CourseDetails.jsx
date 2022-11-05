@@ -41,7 +41,10 @@ const CourseDetails = () => {
                   {coursesDetails.title}
                 </Typography>
                 <Typography gutterBottom variant="h6" component="div">
-                  {coursesDetails.category}
+                  {coursesDetails.date}
+                </Typography>
+                <Typography gutterBottom variant="h6" component="div">
+                  {coursesDetails.level}
                 </Typography>
                 <Typography
                   style={{ fontSize: "15px" }}
@@ -53,7 +56,6 @@ const CourseDetails = () => {
                 <Typography variant="body2">${coursesDetails.price}</Typography>
               </CardContent>
               <CardActions>
-                <InfoSharpIcon />
                 <Button
                   color="primary"
                   variant="contained"

@@ -68,7 +68,7 @@ const Navbar = () => {
           <ul className="right-menu">
             <ShoppingBagIcon
               className="right-item"
-              onClick={() => navigate("/cart")}
+              onClick={() => navigate("/shop")}
             />
             <Avatar
               className="right-item avatar"

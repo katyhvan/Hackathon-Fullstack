@@ -7,16 +7,19 @@ import "../../styles/AddCourse.css";
 const AddCourse = () => {
   const navigate = useNavigate();
 
-  const { addCourse, categories, getCategories } = useContext(coursesContext);
+  const { addCourse, categories, getCategories, levels, getLevel } =
+    useContext(coursesContext);
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
+  const [level, setLevel] = useState("");
   const [image, setImage] = useState(null);
 
   useEffect(() => {
     getCategories();
+    getLevel();
   }, []);
 
   function handleAdd() {
@@ -61,7 +64,7 @@ const AddCourse = () => {
         />
         <input
           className="add-inp"
-          type="number"
+          type="text"
           value={price}
           placeholder="Price"
           onChange={(e) => setPrice(e.target.value)}
@@ -75,6 +78,18 @@ const AddCourse = () => {
           {categories?.map((item) => (
             <option key={item.id} value={item.id}>
               {item.title}
+            </option>
+          ))}
+        </select>
+        <select
+          className="chooseLevel"
+          value={level}
+          onChange={(e) => setLevel(e.target.value)}
+        >
+          <option>Level</option>
+          {levels?.map((item) => (
+            <option key={item.id} value={item.count}>
+              {item.level}
             </option>
           ))}
         </select>

@@ -18,7 +18,7 @@ const pages = [
   },
   {
     type: "Shop",
-    path: "/cart",
+    path: "/shop",
   },
 ];
 

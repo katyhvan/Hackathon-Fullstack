@@ -10,7 +10,7 @@ import CoursesPage from "./pages/CoursesPage";
 // import PythonPage from "./pages/PythonPage";
 import CourseDetailsPage from "./pages/CourseDetailsPage";
 import EditCoursePage from "./pages/EditCoursePage";
-import CartPage from "./pages/CartPage";
+import ShopPage from "./pages/ShopPage";
 import FavoritesPage from "./pages/FavoritesPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import AdminPage from "./pages/AdminPage";
@@ -48,8 +48,8 @@ const PAGES_ROUTES = [
     id: 6,
   },
   {
-    link: "/cart",
-    element: <CartPage />,
+    link: "/shop",
+    element: <ShopPage />,
     id: 7,
   },
   {

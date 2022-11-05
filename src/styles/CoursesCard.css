@@ -6,3 +6,18 @@
 .card {
   margin: 25px;
 }
+
+.icons-block {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.icon {
+  font-size: 40px !important;
+}
+
+.rating-stars {
+  margin: 10px !important;
+  cursor: pointer;
+}
