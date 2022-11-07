@@ -1,9 +1,3 @@
-/* @media (max-width: 1200px) {
-  .shop-img {
-    display: none;
-  }
-} */
-
 .shop-titles {
   display: flex;
   justify-content: space-around;
@@ -13,11 +7,55 @@
   display: flex;
 }
 
+.MuiTable-root {
+  width: 100vw;
+}
+
 .delete-shop {
   color: #b22626;
   cursor: pointer;
+  font-size: 40px !important;
 }
 
 .total-price {
-  margin-left: 70%;
+  margin: 1%;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  color: rgb(33, 33, 111);
+}
+
+.summary {
+  color: rgb(41, 147, 71);
+}
+
+.shop-btn {
+  margin-left: 20px;
+  padding: 15px 20px;
+  color: #fff;
+  background: #265cb2;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.shop-btn:hover {
+  font-size: 20px;
+}
+
+@media (max-width: 500px) {
+  .shop-img {
+    display: none !important;
+  }
+}
+
+@media (max-width: 370px) {
+  .total-price {
+    font-size: 18px;
+  }
+  .shop-btn {
+    padding: 8px 16px;
+  }
+  .MuiTableCell-root {
+    padding: 5px !important;
+  }
 }

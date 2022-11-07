@@ -13,37 +13,37 @@ import DeleteSweepIcon from "@mui/icons-material/DeleteSweep";
 
 import "../../styles/Shop.css";
 
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
-  },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
-  },
-}));
+// const StyledTableCell = styled(TableCell)(({ theme }) => ({
+//   [`&.${tableCellClasses.head}`]: {
+//     backgroundColor: theme.palette.common.black,
+//     color: theme.palette.common.white,
+//   },
+//   [`&.${tableCellClasses.body}`]: {
+//     fontSize: 14,
+//   },
+// }));
 
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  "&:nth-of-type(odd)": {
-    backgroundColor: theme.palette.action.hover,
-  },
-  // hide last border
-  "&:last-child td, &:last-child th": {
-    border: 0,
-  },
-}));
+// const StyledTableRow = styled(TableRow)(({ theme }) => ({
+//   "&:nth-of-type(odd)": {
+//     backgroundColor: theme.palette.action.hover,
+//   },
+//   // hide last border
+//   "&:last-child td, &:last-child th": {
+//     border: 0,
+//   },
+// }));
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
+// function createData(name, calories, fat, carbs, protein) {
+//   return { name, calories, fat, carbs, protein };
+// }
 
-const rows = [
-  createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-  createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-  createData("Eclair", 262, 16.0, 24, 6.0),
-  createData("Cupcake", 305, 3.7, 67, 4.3),
-  createData("Gingerbread", 356, 16.0, 49, 3.9),
-];
+// const rows = [
+//   createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
+//   createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
+//   createData("Eclair", 262, 16.0, 24, 6.0),
+//   createData("Cupcake", 305, 3.7, 67, 4.3),
+//   createData("Gingerbread", 356, 16.0, 49, 3.9),
+// ];
 
 const Shop = () => {
   let {
@@ -71,25 +71,7 @@ const Shop = () => {
 
   return (
     <>
-      {/* <div className="shop-titles">
-        <h3>Image</h3>
-        <h3>Title</h3>
-        <h3>Price</h3>
-        <h3>SubPrice</h3>
-        <h3>Delete</h3>
-      </div>
-      <div className="shop-body">
-        {shop?.courses.map((row) => (
-          <div className="shop-text">
-            <p>{row.item.image}</p>
-            <p></p>
-            <p></p>
-            <p></p>
-            <p></p>
-          </div>
-        ))}
-      </div> */}
-      <Table sx={{ minWidth: 900 }} aria-label="simple table">
+      <Table aria-label="simple table">
         <TableHead>
           <TableRow>
             <TableCell className="shop-img" align="left">
@@ -112,8 +94,8 @@ const Shop = () => {
                 <img
                   src={row.item.image}
                   alt="poster"
-                  width="70px"
-                  height="50px"
+                  width="100px"
+                  height="70px"
                 />
               </TableCell>
               <TableCell align="right">{row.item.title}</TableCell>
@@ -140,10 +122,10 @@ const Shop = () => {
           ))}
         </TableBody>
       </Table>
-      <Typography className="total-price" variant="h6" component="div">
-        Total price: {shop?.totalPrice}
-        <Button>BUY NOW</Button>
-      </Typography>
+      <div className="total-price">
+        Total price: <span className="summary">{shop?.totalPrice}</span>
+        <button className="shop-btn">BUY NOW</button>
+      </div>
     </>
   );
 };

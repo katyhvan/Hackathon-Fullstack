@@ -85,10 +85,6 @@ const CoursesCard = ({ item }) => {
           >
             {item.description}
           </Typography>
-          {/* <Typography gutterBottom variant="h6" component="div">
-            {item.category}
-          </Typography> */}
-
           <div className="favorite">
             <FavoriteIcon style={{ color: "#c81919" }} />
             <p>To Favorite</p>
