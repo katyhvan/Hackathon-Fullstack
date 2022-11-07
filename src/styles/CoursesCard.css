@@ -7,6 +7,10 @@
   margin: 15px;
 }
 
+.card-title {
+  height: 50px;
+}
+
 .card-desc {
   margin-top: 7px;
   height: 80px;

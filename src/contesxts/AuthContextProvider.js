@@ -1,10 +1,10 @@
 import React, { useContext, useState } from "react";
 import axios from "axios";
 
-const authContext = React.createContext();
+export const authContext = React.createContext();
 export const useAuth = () => useContext(authContext);
 
-const API = "http://34.28.29.118/api/v1/";
+const API = "http://34.130.53.80/api/v1/";
 
 const AuthContextProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(false);

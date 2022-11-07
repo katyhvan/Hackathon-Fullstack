@@ -12,7 +12,6 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import InfoSharpIcon from "@mui/icons-material/InfoSharp";
 import EditRoundedIcon from "@mui/icons-material/EditRounded";
-import DeleteSweepRoundedIcon from "@mui/icons-material/DeleteSweepRounded";
 import ShoppingBagRoundedIcon from "@mui/icons-material/ShoppingBagRounded";
 import TextsmsIcon from "@mui/icons-material/Textsms";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -20,15 +19,13 @@ import StarIcon from "@mui/icons-material/Star";
 
 import { shopContext } from "../../contesxts/ShopContextProvider";
 import "../../styles/CourseDetails.css";
-import { InsertEmoticon } from "@mui/icons-material";
 
 const stars = Array(5).fill(0);
 
 const CourseDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { coursesDetails, getCoursesDetails, deleteCourses, currentUser } =
-    useContext(coursesContext);
+  const { coursesDetails, getCoursesDetails } = useContext(coursesContext);
   const { addCoursesToShop } = useContext(shopContext);
   const [currentValue, setCurrentValue] = useState(0);
 
@@ -61,6 +58,7 @@ const CourseDetails = () => {
                   >
                     {coursesDetails.title}
                   </Typography>
+
                   <div className="rating-stars-details">
                     {stars.map((_, index) => {
                       return (

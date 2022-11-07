@@ -59,15 +59,22 @@ const CoursesCard = ({ item }) => {
                     handleClick(index + 1);
                   }}
                 />
+                {/* <span>{item.rating_count}</span> */}
               </>
             );
           })}
         </div>
+        <div>{item.rating}</div>
         <CardContent>
-          <Typography gutterBottom variant="h6" component="div">
+          <Typography
+            className="card-title"
+            gutterBottom
+            variant="h6"
+            component="div"
+          >
             {item.title}
           </Typography>
-          <Typography variant="body2">
+          <Typography className="card-price" variant="body2">
             <strong>$ {item.price}</strong>
           </Typography>
           <Typography

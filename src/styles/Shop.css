@@ -12,3 +12,12 @@
 .shop-text {
   display: flex;
 }
+
+.delete-shop {
+  color: #b22626;
+  cursor: pointer;
+}
+
+.total-price {
+  margin-left: 70%;
+}

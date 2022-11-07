@@ -7,26 +7,37 @@ import Loader from "../../components/Loader/Loader";
 const EditCourse = () => {
   const navigate = useNavigate();
 
-  const { courseDetails, getCoursesDetails, saveEditedCourse } =
+  const { coursesDetails, getCoursesDetails, saveEditedCourse } =
     useContext(coursesContext);
 
+  console.log(coursesDetails);
+
   const { id } = useParams();
-  const [course, setCourse] = useState(courseDetails);
-  // const [image, setImage] = useState(courseDetails.image);
+  const [course, setCourse] = useState(coursesDetails);
+  console.log(course, "obj");
+  // const [image, setImage] = useState(coursesDetails.image);
 
   useEffect(() => {
     getCoursesDetails(id);
   }, []);
 
+  console.log(course);
+
   useEffect(() => {
-    setCourse(courseDetails);
-  }, [courseDetails]);
+    setCourse(coursesDetails);
+  }, [coursesDetails]);
 
   function handleInp(e) {
-    if ((e.target.name = "price")) {
+    if (e.target.name === "price") {
       let obj = {
         ...course,
         [e.target.name]: Number(e.target.value),
+      };
+      setCourse(obj);
+    } else if (e.target.file === "image") {
+      let obj = {
+        ...course,
+        [e.target.name]: e.target.files[0],
       };
       setCourse(obj);
     } else {
@@ -36,37 +47,40 @@ const EditCourse = () => {
       };
       setCourse(obj);
     }
+    // let formData = new FormData();
+    // formData.append("course", course);
+    // setCourse(formData);
   }
 
   return (
     <>
       {course ? (
         <>
-          <div className="edit-block">
+          <div className="edit-form">
             <h2 className="edit-title">Edit Course</h2>
             <input
               className="edit-inp"
               type="text"
               name="title"
               placeholder="Title"
-              onChange={handleInp}
               value={course.title}
+              onChange={handleInp}
             />
             <input
               className="edit-inp"
               type="text"
               name="description"
               placeholder="Description"
-              onChange={handleInp}
               value={course.description}
+              onChange={handleInp}
             />
             <input
               className="edit-inp"
-              type="text"
+              type="number"
               name="price"
               placeholder="Price"
-              onChange={handleInp}
               value={course.price}
+              onChange={handleInp}
             />
             {/* <select
               className="chooseCategory"
@@ -80,22 +94,21 @@ const EditCourse = () => {
                 </option>
               ))}
             </select> */}
-            {/* <input
+            <input
               className="edit-inp"
               type="file"
               name="image"
-              value={course.image}
               accept="image/*"
               onChange={handleInp}
-            /> */}
+            />
             <button
-              className="edit-btn"
+              className="save-btn"
               onClick={() => {
                 saveEditedCourse(course);
-                navigate("/");
+                navigate("/courses");
               }}
             >
-              Save changes
+              Save
             </button>
           </div>
         </>

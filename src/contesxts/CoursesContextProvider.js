@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useContext } from "react";
 import axios from "axios";
 
 export const coursesContext = React.createContext();
@@ -37,7 +37,7 @@ function reducer(state = INIT_STATE, action) {
   }
 }
 
-const API = "http://34.28.29.118/api/v1/";
+const API = "http://34.130.53.80/api/v1/";
 
 const CoursesContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, INIT_STATE);
@@ -45,7 +45,7 @@ const CoursesContextProvider = ({ children }) => {
   //read
   async function getCourses() {
     try {
-      const res = await axios(`${API}courses/`);
+      const res = await axios(`${API}courses/${window.location.search}`);
       dispatch({
         type: "GET_COURSES",
         payload: res.data,
@@ -128,15 +128,7 @@ const CoursesContextProvider = ({ children }) => {
   //details
   async function getCoursesDetails(id) {
     try {
-      // const token = JSON.parse(localStorage.getItem("token"));
-      // const Authorization = `Token ${token.access}`;
-      // const config = {
-      //   headers: {
-      //     Authorization,
-      //   },
-      // };
-      let res = await axios(`${API}courses/${id}`);
-
+      let res = await axios(`${API}courses/${id}/`);
       dispatch({
         type: "GET_COURSES_DETAILS",
         payload: res.data,
@@ -148,12 +140,22 @@ const CoursesContextProvider = ({ children }) => {
 
   //save
   async function saveEditedCourse(newCourse) {
-    await axios.patch(`${API}courses/${newCourse.id}`, newCourse);
-    getCourses();
+    try {
+      const token = JSON.parse(localStorage.getItem("token"));
+      const Authorization = `Token ${token.access}`;
+      const config = {
+        headers: {
+          Authorization,
+        },
+      };
+      await axios.patch(`${API}courses/${newCourse.id}/`, newCourse, config);
+      getCourses();
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   //favorites
-  function getFavorites() {}
 
   function addToFavorites(favorite) {
     let favorites = localStorage.getItem("favorites");
