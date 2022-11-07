@@ -13,58 +13,53 @@ import ShoppingBagRoundedIcon from "@mui/icons-material/ShoppingBagRounded";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../contesxts/AuthContextProvider";
 import { shopContext } from "../../contesxts/ShopContextProvider";
-import ChatBubbleOutlineRoundedIcon from "@mui/icons-material/ChatBubbleOutlineRounded";
-// import Like from "../../components/Like/Like";
+import TextsmsIcon from "@mui/icons-material/Textsms";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import StarIcon from "@mui/icons-material/Star";
+
 import "../../styles/CoursesCard.css";
 
 const stars = Array(5).fill(0);
 
 const CoursesCard = ({ item }) => {
+  const navigate = useNavigate();
   const { deleteCourses } = useContext(coursesContext);
   const { currentUser } = useAuth();
   const { addCoursesToShop } = useContext(shopContext);
   const [currentValue, setCurrentValue] = useState(0);
-  const [hoverValue, setHoverValue] = useState(undefined);
-
-  const navigate = useNavigate();
 
   const handleClick = (value) => {
     setCurrentValue(value);
   };
 
-  const handleMouseOver = (value) => {
-    setHoverValue(value);
-  };
-
-  const handleMouseLeave = (value) => {
-    setHoverValue(undefined);
-  };
+  const handleFavorite = () => {};
 
   return (
     <>
-      <Card className="card" sx={{ maxWidth: 450 }}>
+      <Card className="card" sx={{ maxWidth: 400 }}>
         <CardMedia
           className="img-course"
           component="img"
-          height="140"
+          height="120"
           image={item.image}
           alt="poster"
         />
-        {/* <Like /> */}
         <div className="rating-stars">
           {stars.map((_, index) => {
             return (
-              <StarIcon
-                key={index}
-                style={
-                  hoverValue || currentValue > index
-                    ? { color: "#FFBA5A" }
-                    : { color: "a9a9a9" }
-                }
-                onClick={() => handleClick(index + 1)}
-                onMouseLeave={handleMouseLeave}
-              />
+              <>
+                <StarIcon
+                  key={index}
+                  style={
+                    currentValue > index
+                      ? { color: "#FFBA5A" }
+                      : { color: "a9a9a9" }
+                  }
+                  onClick={() => {
+                    handleClick(index + 1);
+                  }}
+                />
+              </>
             );
           })}
         </div>
@@ -72,40 +67,48 @@ const CoursesCard = ({ item }) => {
           <Typography gutterBottom variant="h6" component="div">
             {item.title}
           </Typography>
-          <Typography gutterBottom variant="h6" component="div">
-            {item.category}
+          <Typography variant="body2">
+            <strong>$ {item.price}</strong>
           </Typography>
           <Typography
+            className="card-desc"
             style={{ fontSize: "15px" }}
             variant="body2"
             color="text.secondary"
           >
             {item.description}
           </Typography>
-          <Typography variant="body2">${item.price}</Typography>
+          {/* <Typography gutterBottom variant="h6" component="div">
+            {item.category}
+          </Typography> */}
+
+          <div className="favorite">
+            <FavoriteIcon style={{ color: "#c81919" }} />
+            <p>To Favorite</p>
+          </div>
         </CardContent>
         <CardActions className="icons-block">
           <InfoSharpIcon
-            className="icon"
+            className="icon info-icon"
             onClick={() => navigate(`/details/${item.id}`)}
           />
-          <ChatBubbleOutlineRoundedIcon />
           {currentUser ? (
             <>
               <EditRoundedIcon
-                className="icon"
+                className="icon edit-icon"
                 onClick={() => navigate(`/edit/${item.id}`)}
               />
               <DeleteSweepRoundedIcon
-                className="icon"
+                className="icon delete-icon"
                 onClick={() => deleteCourses(item.id)}
               />
             </>
           ) : null}
           <ShoppingBagRoundedIcon
-            className="icon"
+            className="icon shop-icon"
             onClick={() => addCoursesToShop(item)}
           />
+          <TextsmsIcon className="icon comment-icon" />
         </CardActions>
       </Card>
     </>

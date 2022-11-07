@@ -7,14 +7,8 @@ import Loader from "../../components/Loader/Loader";
 const EditCourse = () => {
   const navigate = useNavigate();
 
-  const {
-    categories,
-    courseDetails,
-    getCoursesDetails,
-    saveEditedCourse,
-
-    getCourses,
-  } = useContext(coursesContext);
+  const { courseDetails, getCoursesDetails, saveEditedCourse } =
+    useContext(coursesContext);
 
   const { id } = useParams();
   const [course, setCourse] = useState(courseDetails);
@@ -25,7 +19,7 @@ const EditCourse = () => {
   }, []);
 
   useEffect(() => {
-    getCourses(courseDetails);
+    setCourse(courseDetails);
   }, [courseDetails]);
 
   function handleInp(e) {
@@ -41,7 +35,6 @@ const EditCourse = () => {
         [e.target.name]: e.target.value,
       };
       setCourse(obj);
-      console.log(obj);
     }
   }
 
@@ -55,9 +48,9 @@ const EditCourse = () => {
               className="edit-inp"
               type="text"
               name="title"
-              value={course.title}
               placeholder="Title"
               onChange={handleInp}
+              value={course.title}
             />
             <input
               className="edit-inp"
@@ -65,6 +58,7 @@ const EditCourse = () => {
               name="description"
               placeholder="Description"
               onChange={handleInp}
+              value={course.description}
             />
             <input
               className="edit-inp"
@@ -72,6 +66,7 @@ const EditCourse = () => {
               name="price"
               placeholder="Price"
               onChange={handleInp}
+              value={course.price}
             />
             {/* <select
               className="chooseCategory"
@@ -85,13 +80,14 @@ const EditCourse = () => {
                 </option>
               ))}
             </select> */}
-            <input
+            {/* <input
               className="edit-inp"
               type="file"
               name="image"
+              value={course.image}
               accept="image/*"
               onChange={handleInp}
-            />
+            /> */}
             <button
               className="edit-btn"
               onClick={() => {

@@ -1,6 +1,6 @@
 import { coursesContext } from "../contesxts/CoursesContextProvider";
 
-export function getCountOfCoursesinCart() {
+export function getCountOfCoursesInCart() {
   const shop = JSON.parse(localStorage.getItem("shop"));
   return shop ? shop.courses.length : 0;
 }

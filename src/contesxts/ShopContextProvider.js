@@ -1,7 +1,6 @@
-import { CardTravel } from "@mui/icons-material";
 import React, { useReducer } from "react";
 import {
-  getCountOfCoursesinCart,
+  getCountOfCoursesInCart,
   calcSubPrice,
   calcTotalPrice,
 } from "../helpers/functions";
@@ -15,7 +14,7 @@ const SHOP = {
 
 const INIT_STATE = {
   shop: localStorage.getItem("shop"),
-  shopLength: getCountOfCoursesinCart(),
+  shopLength: getCountOfCoursesInCart(),
 };
 
 function reducer(state = INIT_STATE, action) {
@@ -46,10 +45,12 @@ const ShopContextProvider = ({ children }) => {
         })
       );
     }
+
     shop = {
       courses: [],
       totalPrice: 0,
     };
+
     dispatch({
       type: SHOP.GET_SHOP,
       payload: shop,

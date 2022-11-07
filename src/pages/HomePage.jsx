@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import InputBase from "@mui/material/InputBase";
+import Footer from "../components/Footer/Footer";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 
@@ -260,7 +261,7 @@ const HomePage = () => {
 
       {/* content 4 start  */}
       <div className="div-content4-block"></div>
-
+      <Footer />
       {/* content 4 end  */}
     </>
   );

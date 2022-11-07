@@ -4,7 +4,7 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
 const Like = () => {
   const [like, setLike] = useState(false);
-  let count = 0;
+
   return (
     <>
       <div onClick={() => setLike(!like)}>

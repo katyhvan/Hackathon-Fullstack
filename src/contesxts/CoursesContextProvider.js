@@ -45,7 +45,7 @@ const CoursesContextProvider = ({ children }) => {
   //read
   async function getCourses() {
     try {
-      const res = await axios(`${API}courses/${window.location.search}`);
+      const res = await axios(`${API}courses/`);
       dispatch({
         type: "GET_COURSES",
         payload: res.data,
@@ -128,14 +128,14 @@ const CoursesContextProvider = ({ children }) => {
   //details
   async function getCoursesDetails(id) {
     try {
-      const token = JSON.parse(localStorage.getItem("token"));
-      const Authorization = `Token ${token.access}`;
-      const config = {
-        headers: {
-          Authorization,
-        },
-      };
-      let res = await axios(`${API}courses/${id}`, config);
+      // const token = JSON.parse(localStorage.getItem("token"));
+      // const Authorization = `Token ${token.access}`;
+      // const config = {
+      //   headers: {
+      //     Authorization,
+      //   },
+      // };
+      let res = await axios(`${API}courses/${id}`);
 
       dispatch({
         type: "GET_COURSES_DETAILS",

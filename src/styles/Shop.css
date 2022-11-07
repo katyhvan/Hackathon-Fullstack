@@ -1,0 +1,14 @@
+/* @media (max-width: 1200px) {
+  .shop-img {
+    display: none;
+  }
+} */
+
+.shop-titles {
+  display: flex;
+  justify-content: space-around;
+}
+
+.shop-text {
+  display: flex;
+}

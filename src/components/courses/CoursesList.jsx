@@ -26,7 +26,7 @@ const CoursesList = () => {
 
   //pagination
   const [currentPage, setCurrentPage] = useState(1);
-  let itemsOnPage = 5;
+  let itemsOnPage = 3;
   let count = Math.ceil(courses.length / itemsOnPage);
 
   function handlePage(e, p) {
@@ -40,7 +40,7 @@ const CoursesList = () => {
   }
 
   useEffect(() => {
-    getCourses(window.location.search);
+    getCourses();
   }, []);
 
   return (
@@ -56,7 +56,16 @@ const CoursesList = () => {
           <CoursesCard key={item.id} item={item} />
         ))}
       </div>
-      <Pagination count={10} page={currentPage} onChange={handlePage} />
+      <Pagination
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          margin: "1%",
+        }}
+        count={10}
+        page={currentPage}
+        onChange={handlePage}
+      />
     </>
   );
 };

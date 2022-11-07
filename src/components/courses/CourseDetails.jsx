@@ -1,8 +1,8 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { coursesContext } from "../../contesxts/CoursesContextProvider";
-import CoursesCard from "./CoursesCard";
+import Loader from "../Loader/Loader";
 
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -11,70 +11,113 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import InfoSharpIcon from "@mui/icons-material/InfoSharp";
+import EditRoundedIcon from "@mui/icons-material/EditRounded";
+import DeleteSweepRoundedIcon from "@mui/icons-material/DeleteSweepRounded";
+import ShoppingBagRoundedIcon from "@mui/icons-material/ShoppingBagRounded";
+import TextsmsIcon from "@mui/icons-material/Textsms";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import StarIcon from "@mui/icons-material/Star";
+
+import { shopContext } from "../../contesxts/ShopContextProvider";
+import "../../styles/CourseDetails.css";
+import { InsertEmoticon } from "@mui/icons-material";
+
+const stars = Array(5).fill(0);
 
 const CourseDetails = () => {
   const { id } = useParams();
-  const { coursesDetails, getCoursesDetails, deleteCourses } =
-    useContext(coursesContext);
-
   const navigate = useNavigate();
+  const { coursesDetails, getCoursesDetails, deleteCourses, currentUser } =
+    useContext(coursesContext);
+  const { addCoursesToShop } = useContext(shopContext);
+  const [currentValue, setCurrentValue] = useState(0);
 
   useEffect(() => {
     getCoursesDetails(id);
   }, []);
+
+  const handleClick = (value) => {
+    setCurrentValue(value);
+  };
 
   return (
     <>
       <div>
         {coursesDetails ? (
           <>
-            <Card className="card" sx={{ maxWidth: 450 }}>
-              <CardMedia
-                className="img-course"
-                component="img"
-                height="140"
-                image={coursesDetails.image}
+            <div className="details-block">
+              <img
+                className="details-img"
+                src={coursesDetails.image}
                 alt="poster"
               />
-              <CardContent>
-                <Typography gutterBottom variant="h6" component="div">
-                  {coursesDetails.title}
-                </Typography>
-                <Typography gutterBottom variant="h6" component="div">
-                  {coursesDetails.date}
-                </Typography>
-                <Typography gutterBottom variant="h6" component="div">
-                  {coursesDetails.level}
-                </Typography>
-                <Typography
-                  style={{ fontSize: "15px" }}
-                  variant="body2"
-                  color="text.secondary"
-                >
-                  {coursesDetails.description}
-                </Typography>
-                <Typography variant="body2">${coursesDetails.price}</Typography>
-              </CardContent>
-              <CardActions>
-                <Button
-                  color="primary"
-                  variant="contained"
-                  onClick={() => navigate(`/edit/${coursesDetails.id}`)}
-                >
-                  Edit
-                </Button>
-                <Button
-                  color="primary"
-                  variant="contained"
-                  onClick={() => deleteCourses(coursesDetails.id)}
-                >
-                  Delete
-                </Button>
-              </CardActions>
-            </Card>
+              <div className="details-info">
+                <CardContent className="details-body">
+                  <Typography
+                    className="details-title"
+                    gutterBottom
+                    variant="h6"
+                    component="div"
+                  >
+                    {coursesDetails.title}
+                  </Typography>
+                  <div className="rating-stars-details">
+                    {stars.map((_, index) => {
+                      return (
+                        <>
+                          <StarIcon
+                            key={index}
+                            style={
+                              currentValue > index
+                                ? { color: "#FFBA5A" }
+                                : { color: "a9a9a9" }
+                            }
+                            onClick={() => {
+                              handleClick(index + 1);
+                            }}
+                          />
+                        </>
+                      );
+                    })}
+                  </div>
+                  <Typography className="details-price" variant="body2">
+                    <strong>$ {coursesDetails.price}</strong>
+                  </Typography>
+                  <Typography gutterBottom variant="h6" component="div">
+                    {coursesDetails.date}
+                  </Typography>
+                  <Typography gutterBottom variant="h6" component="div">
+                    {coursesDetails.level}
+                  </Typography>
+                  <Typography
+                    className="details-desc"
+                    style={{ fontSize: "15px" }}
+                    variant="body2"
+                    color="text.secondary"
+                  >
+                    {coursesDetails.description}
+                  </Typography>
+                </CardContent>
+                <CardActions className="icons-block">
+                  <InfoSharpIcon
+                    className="icon info-icon"
+                    onClick={() => navigate(`/courses`)}
+                  />
+                  <ShoppingBagRoundedIcon
+                    className="icon shop-icon"
+                    onClick={() => addCoursesToShop(coursesDetails)}
+                  />
+                  <TextsmsIcon className="icon comment-icon" />
+                </CardActions>
+                <div className="favorite-details">
+                  <FavoriteIcon style={{ color: "#c81919" }} />
+                  <p>To Favorite</p>
+                </div>
+              </div>
+            </div>
           </>
         ) : (
-          <h3>Loading...</h3>
+          <Loader />
         )}
       </div>
     </>
