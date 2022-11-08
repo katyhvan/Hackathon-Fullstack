@@ -8,9 +8,9 @@ import CoursesPage from "./pages/CoursesPage";
 // import JSPage from "./pages/JSPage";
 // import PhpPage from "./pages/PhpPage";
 // import PythonPage from "./pages/PythonPage";
-import CourseDetails from "./pages/CourseDetails";
+import CourseDetailsPage from "./pages/CourseDetailsPage";
 import EditCoursePage from "./pages/EditCoursePage";
-import CartPage from "./pages/CartPage";
+import ShopPage from "./pages/ShopPage";
 import FavoritesPage from "./pages/FavoritesPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import AdminPage from "./pages/AdminPage";
@@ -39,7 +39,7 @@ const PAGES_ROUTES = [
   },
   {
     link: "/details/:id",
-    element: <CourseDetails />,
+    element: <CourseDetailsPage />,
     id: 5,
   },
   {
@@ -48,8 +48,8 @@ const PAGES_ROUTES = [
     id: 6,
   },
   {
-    link: "/cart",
-    element: <CartPage />,
+    link: "/shop",
+    element: <ShopPage />,
     id: 7,
   },
   {

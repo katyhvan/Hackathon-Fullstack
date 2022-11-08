@@ -31,17 +31,59 @@ function NavItemDropDown() {
         onClose={handleClose}
         TransitionComponent={Fade}
       >
-        <MenuItem onClick={() => navigate("/courses")}>All</MenuItem>
+        <MenuItem
+          onClick={() => {
+            navigate("/courses");
+            handleClose();
+          }}
+        >
+          All
+        </MenuItem>
         <Divider sx={{ my: 0.5 }} />
-        <MenuItem onClick={() => navigate("/js")}>JavaScript</MenuItem>
+        <MenuItem
+          onClick={() => {
+            navigate("/js");
+            handleClose();
+          }}
+        >
+          JavaScript
+        </MenuItem>
         <Divider sx={{ my: 0.5 }} />
-        <MenuItem onClick={() => navigate("/python")}>Python</MenuItem>
+        <MenuItem
+          onClick={() => {
+            navigate("/python");
+            handleClose();
+          }}
+        >
+          Python
+        </MenuItem>
         <Divider sx={{ my: 0.5 }} />
-        <MenuItem onClick={() => navigate("/php")}>PHP</MenuItem>
+        <MenuItem
+          onClick={() => {
+            navigate("/php");
+            handleClose();
+          }}
+        >
+          PHP
+        </MenuItem>
         <Divider sx={{ my: 0.5 }} />
-        <MenuItem onClick={() => navigate("/c+")}>C++</MenuItem>
+        <MenuItem
+          onClick={() => {
+            navigate("/c+");
+            handleClose();
+          }}
+        >
+          C++
+        </MenuItem>
         <Divider sx={{ my: 0.5 }} />
-        <MenuItem onClick={() => navigate("/c+")}>C#</MenuItem>
+        <MenuItem
+          onClick={() => {
+            navigate("/c+");
+            handleClose();
+          }}
+        >
+          C#
+        </MenuItem>
       </Menu>
     </div>
   );

@@ -1,9 +1,10 @@
 import React from "react";
+import EditCourse from "../components/courses/EditCourse";
 
 const EditCoursePage = () => {
   return (
     <>
-      <div>EditCoursePage</div>
+      <EditCourse />
     </>
   );
 };

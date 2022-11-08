@@ -6,6 +6,7 @@ import NavItemDropDown from "./NavItemDropDown";
 import MenuDropdown from "./MenuDropdown";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import Avatar from "@mui/material/Avatar";
+import CloseIcon from "@mui/icons-material/Close";
 // import { Logout } from "@mui/icons-material";
 
 import "../../styles/Navbar.css";
@@ -37,7 +38,10 @@ const Navbar = () => {
           <img src={logo} alt="logo" className="logo" />
           <h2 className="logo-title">Medemy</h2>
         </div>
-        <div className="burger-menu" onClick={() => setMenuActive(!menuActive)}>
+        <div
+          className={menuActive ? <CloseIcon /> : "burger-menu"}
+          onClick={() => setMenuActive(!menuActive)}
+        >
           <div className="burger-btn"></div>
           <div className="burger-btn"></div>
           <div className="burger-btn"></div>
@@ -63,8 +67,8 @@ const Navbar = () => {
         <div className="navbar-right">
           <ul className="right-menu">
             <ShoppingBagIcon
-              className="right-item"
-              onClick={() => navigate("/cart")}
+              className="right-item icon-bag"
+              onClick={() => navigate("/shop")}
             />
             <Avatar
               className="right-item avatar"

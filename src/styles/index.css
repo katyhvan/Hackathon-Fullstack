@@ -4,3 +4,9 @@ body {
   box-sizing: border-box;
   font-family: "Roboto";
 }
+
+@media (max-width: 1420px) {
+  .footer {
+    display: none;
+  }
+}

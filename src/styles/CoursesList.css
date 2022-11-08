@@ -1,5 +1,20 @@
 .courses-list {
   display: flex;
-  justify-content: space-around;
-  margin: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1px;
+}
+
+.inp-search {
+  font-size: 18px;
+  margin: 20px;
+  padding: 10px 15px;
+  border: 0.5px solid grey;
+  border-radius: 15px;
+  height: 15%;
+  width: 40vw;
+}
+
+.inp-search:hover {
+  outline: 0.5px solid blueviolet;
 }

@@ -17,11 +17,13 @@ const RestorePage = () => {
       alert("Some inputs are empty!");
       return;
     }
+
     let formData = new FormData();
     formData.append("code", code);
     formData.append("password", password);
     formData.append("password2", password2);
     passRecovery(formData, navigate);
+    alert("Your password has been recovered!");
 
     setCode("");
     setPassword("");
