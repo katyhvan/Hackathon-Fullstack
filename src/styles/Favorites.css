@@ -1,0 +1,7 @@
+.favorites-list {
+  display: flex;
+}
+
+.remove-fav {
+  cursor: pointer;
+}

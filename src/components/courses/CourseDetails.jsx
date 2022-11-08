@@ -4,14 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { coursesContext } from "../../contesxts/CoursesContextProvider";
 import Loader from "../Loader/Loader";
 
-import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import InfoSharpIcon from "@mui/icons-material/InfoSharp";
-import EditRoundedIcon from "@mui/icons-material/EditRounded";
 import ShoppingBagRoundedIcon from "@mui/icons-material/ShoppingBagRounded";
 import TextsmsIcon from "@mui/icons-material/Textsms";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -26,6 +22,9 @@ const CourseDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { coursesDetails, getCoursesDetails } = useContext(coursesContext);
+
+  console.log(coursesDetails);
+
   const { addCoursesToShop } = useContext(shopContext);
   const [currentValue, setCurrentValue] = useState(0);
 

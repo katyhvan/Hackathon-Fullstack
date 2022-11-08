@@ -1,5 +1,3 @@
-import { coursesContext } from "../contesxts/CoursesContextProvider";
-
 export function getCountOfCoursesInCart() {
   const shop = JSON.parse(localStorage.getItem("shop"));
   return shop ? shop.courses.length : 0;
@@ -12,3 +10,8 @@ export const calcTotalPrice = (courses) => {
     return (prev += curr.subPrice);
   }, 0);
 };
+
+export function getCounOfFavorites() {
+  const favorites = JSON.parse(localStorage.getItem("favorites"));
+  return favorites ? favorites.length : 0;
+}

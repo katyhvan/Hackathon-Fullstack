@@ -10,18 +10,14 @@ const EditCourse = () => {
   const { coursesDetails, getCoursesDetails, saveEditedCourse } =
     useContext(coursesContext);
 
-  console.log(coursesDetails);
-
   const { id } = useParams();
   const [course, setCourse] = useState(coursesDetails);
-  console.log(course, "obj");
-  // const [image, setImage] = useState(coursesDetails.image);
 
   useEffect(() => {
     getCoursesDetails(id);
   }, []);
 
-  console.log(course);
+  // console.log(course);
 
   useEffect(() => {
     setCourse(coursesDetails);
@@ -34,7 +30,7 @@ const EditCourse = () => {
         [e.target.name]: Number(e.target.value),
       };
       setCourse(obj);
-    } else if (e.target.file === "image") {
+    } else if (e.target.name === "image") {
       let obj = {
         ...course,
         [e.target.name]: e.target.files[0],
@@ -46,11 +42,39 @@ const EditCourse = () => {
         [e.target.name]: e.target.value,
       };
       setCourse(obj);
+      console.log(obj);
     }
-    // let formData = new FormData();
-    // formData.append("course", course);
-    // setCourse(formData);
   }
+
+  // function handleInp(e) {
+  //   if (e.target.name === "price") {
+  //     let obj = {
+  //       ...course,
+  //       [e.target.name]: Number(e.target.value),
+  //     };
+  //     setCourse(obj);
+  //   } else {
+  //     let obj = {
+  //       ...course,
+  //       [e.target.name]: e.target.value,
+  //     };
+  //     setCourse(obj);
+  //     console.log(obj);
+  //   }
+  // }
+
+  // const formData = new FormData();
+  // formData.append("title", course.title);
+  // formData.append("description", course.description);
+  // formData.append("price", course.price);
+  // formData.append("image", course.image);
+
+  // let editCourse = {
+  //   ...formData,
+  //   id: id,
+  // };
+  // setCourse(editCourse);
+  saveEditedCourse(course);
 
   return (
     <>

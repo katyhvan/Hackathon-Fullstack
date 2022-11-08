@@ -1,4 +1,5 @@
-import React, { useReducer, useContext } from "react";
+import React, { useReducer } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export const coursesContext = React.createContext();
@@ -7,7 +8,8 @@ const INIT_STATE = {
   courses: [],
   categories: [],
   levels: [],
-  coursesDetails: null,
+  coursesDetails: [],
+  reviews: [],
 };
 
 function reducer(state = INIT_STATE, action) {
@@ -32,6 +34,11 @@ function reducer(state = INIT_STATE, action) {
         ...state,
         levels: action.payload,
       };
+    case "GET_REVIEWS":
+      return {
+        ...state,
+        reviews: action.payload,
+      };
     default:
       return state;
   }
@@ -41,11 +48,14 @@ const API = "http://34.130.53.80/api/v1/";
 
 const CoursesContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, INIT_STATE);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   //read
   async function getCourses() {
     try {
       const res = await axios(`${API}courses/${window.location.search}`);
+
       dispatch({
         type: "GET_COURSES",
         payload: res.data,
@@ -117,7 +127,7 @@ const CoursesContextProvider = ({ children }) => {
           Authorization,
         },
       };
-      await axios.delete(`${API}courses/${id}`, config);
+      await axios.delete(`${API}courses/${id}/`, config);
       getCourses();
     } catch (err) {
       console.log(err);
@@ -128,7 +138,7 @@ const CoursesContextProvider = ({ children }) => {
   //details
   async function getCoursesDetails(id) {
     try {
-      let res = await axios(`${API}courses/${id}/`);
+      const res = await axios(`${API}courses/${id}/`);
       dispatch({
         type: "GET_COURSES_DETAILS",
         payload: res.data,
@@ -140,6 +150,7 @@ const CoursesContextProvider = ({ children }) => {
 
   //save
   async function saveEditedCourse(newCourse) {
+    console.log(newCourse);
     try {
       const token = JSON.parse(localStorage.getItem("token"));
       const Authorization = `Token ${token.access}`;
@@ -155,12 +166,31 @@ const CoursesContextProvider = ({ children }) => {
     }
   }
 
-  //favorites
+  //filter
+  const fetchByParams = (query, value) => {
+    const search = new URLSearchParams(location.search);
 
-  function addToFavorites(favorite) {
-    let favorites = localStorage.getItem("favorites");
+    if (value === "all") {
+      search.delete(query);
+    } else {
+      search.set(query, value);
+    }
 
-    if (!favorites) {
+    const url = `${location.pathname}?${search.toString()}`;
+
+    navigate(url);
+  };
+
+  //reviews
+  async function getReviews(id) {
+    try {
+      const res = await axios(`${API}courses/${id}/reviews/`);
+      dispatch({
+        type: "GET_REVIEWS",
+        payload: res.data,
+      });
+    } catch (err) {
+      console.log(err);
     }
   }
 
@@ -171,6 +201,7 @@ const CoursesContextProvider = ({ children }) => {
         categories: state.categories,
         levels: state.levels,
         coursesDetails: state.coursesDetails,
+        reviews: state.reviews,
 
         addCourse,
         getCourses,
@@ -179,6 +210,8 @@ const CoursesContextProvider = ({ children }) => {
         deleteCourses,
         getCoursesDetails,
         saveEditedCourse,
+        getReviews,
+        fetchByParams,
       }}
     >
       {children}

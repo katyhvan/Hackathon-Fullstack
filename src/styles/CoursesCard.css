@@ -9,6 +9,11 @@
 
 .card-title {
   height: 50px;
+  cursor: pointer;
+}
+
+.card-title:hover {
+  text-decoration: underline;
 }
 
 .card-desc {

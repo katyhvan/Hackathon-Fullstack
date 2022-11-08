@@ -82,6 +82,7 @@ import "../../styles/CoursesList.css";
 
 const CoursesList = () => {
   const { courses, getCourses } = useContext(coursesContext);
+
   useEffect(() => {
     getCourses();
   }, []);
@@ -91,33 +92,30 @@ const CoursesList = () => {
   const [search, setSearch] = useState(searchParams.get("search") || "");
 
   useEffect(() => {
-    // console.log("hello");
-
     setSearchParams({
       search: search,
     });
   }, [search]);
 
-  // useEffect(() => {
-
-  //   getCourses();
-  //   setCurrentPage(1);
-  // }, [searchParams]);
+  useEffect(() => {
+    getCourses();
+    setCurrentPage(1);
+  }, [searchParams]);
 
   //pagination
-  // const [currentPage, setCurrentPage] = useState(1);
-  // let itemsOnPage = 3;
-  // let count = Math.ceil(courses.length / itemsOnPage);
+  const [currentPage, setCurrentPage] = useState(1);
+  let itemsOnPage = 5;
+  let count = Math.ceil(courses.length / itemsOnPage);
 
-  // function handlePage(e, p) {
-  //   setCurrentPage(p);
-  // }
+  function handlePage(e, p) {
+    setCurrentPage(p);
+  }
 
-  // function currentData() {
-  //   const begin = (currentPage - 1) * itemsOnPage;
-  //   const end = begin + itemsOnPage;
-  //   return courses.slice(begin, end);
-  // }
+  function currentData() {
+    const begin = (currentPage - 1) * itemsOnPage;
+    const end = begin + itemsOnPage;
+    return courses.slice(begin, end);
+  }
 
   useEffect(() => {
     getCourses();
@@ -135,11 +133,11 @@ const CoursesList = () => {
         />
       </div>
       <div className="courses-list">
-        {courses.map((item) => (
+        {currentData().map((item) => (
           <CoursesCard key={item.id} item={item} />
         ))}
       </div>
-      {/* <Pagination
+      <Pagination
         style={{
           display: "flex",
           justifyContent: "center",
@@ -148,7 +146,7 @@ const CoursesList = () => {
         count={10}
         page={currentPage}
         onChange={handlePage}
-      /> */}
+      />
     </>
   );
 };

@@ -46,23 +46,18 @@ import "../../styles/Shop.css";
 // ];
 
 const Shop = () => {
-  let {
-    shop,
-    getShop,
-    changeCourseCount,
-    parseShop,
-    deleteCoursesInShop,
-    // parseShopLength,
-  } = useContext(shopContext);
+  let { shop, getShop, changeCourseCount, parseShop, deleteCoursesInShop } =
+    useContext(shopContext);
 
   useEffect(() => {
     getShop();
     parseShop();
   }, []);
 
-  // useEffect(() => {
-  //   parseShopLength();
-  // }, []);
+  useEffect(() => {
+    getShop();
+    parseShop();
+  }, [shop]);
 
   function shopCleaner() {
     localStorage.removeItem("shop");
