@@ -8,7 +8,6 @@
 .div-pay {
   padding-left: 15%;
   padding-top: 5%;
-  /* margin-top: 60%; */
 }
 
 .h2-h2 {
@@ -36,7 +35,6 @@
 }
 
 #PaymentForm {
-  /* margin: 20px; */
   background-color: #3072a4;
   background: radial-gradient(
     circle,
