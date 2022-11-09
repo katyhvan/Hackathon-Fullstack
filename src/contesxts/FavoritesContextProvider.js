@@ -81,9 +81,11 @@ const FavoritesContextProvider = ({ children }) => {
   };
 
   function deleteFavorites(id) {
-    let favorites = localStorage.getItem("favorites");
+    let favorites = JSON.parse(localStorage.getItem("favorites"));
 
+    console.log(favorites);
     favorites.courses = favorites.courses.filter((elem) => elem.item.id !== id);
+
     localStorage.setItem("favorites", JSON.stringify(favorites));
 
     getFavorites();

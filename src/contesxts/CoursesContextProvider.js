@@ -17,7 +17,7 @@ function reducer(state = INIT_STATE, action) {
     case "GET_COURSES":
       return {
         ...state,
-        courses: action.payload.results,
+        courses: action.payload,
       };
     case "GET_CATEGORIES":
       return {

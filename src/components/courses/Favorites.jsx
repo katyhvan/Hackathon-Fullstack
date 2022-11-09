@@ -14,6 +14,7 @@ import ShoppingBagRoundedIcon from "@mui/icons-material/ShoppingBagRounded";
 import TextsmsIcon from "@mui/icons-material/Textsms";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import StarIcon from "@mui/icons-material/Star";
+import DeleteSharpIcon from "@mui/icons-material/DeleteSharp";
 
 import "../../styles/Favorites.css";
 
@@ -44,23 +45,24 @@ const Favorites = () => {
             image={elem.item.image}
             alt="poster"
           />
-          <div className="rating-stars">
+          <div className="rating-stars" style={{ display: "flex" }}>
             {stars.map((_, index) => {
               return (
-                <>
+                <div>
                   <StarIcon
                     key={index}
-                    style={
-                      currentValue > index
-                        ? { color: "#FFBA5A" }
-                        : { color: "a9a9a9" }
-                    }
+                    // style={
+                    //   currentValue > index
+                    //     ? { color: "#FFBA5A" }
+                    //     : { color: "#a9a9a9" }
+                    // }
+                    style={{ color: "#FFBA5A" }}
                     onClick={() => {
                       handleClick(index + 1);
                     }}
                   />
                   {/* <span>{item.rating_count}</span> */}
-                </>
+                </div>
               );
             })}
           </div>
@@ -113,7 +115,7 @@ const Favorites = () => {
               className="remove-fav"
               onClick={() => deleteFavorites(elem.item.id)}
             >
-              <FavoriteIcon /> Remove
+              <DeleteSharpIcon className="icon delete-icon" />
             </span>
           </CardActions>
         </Card>

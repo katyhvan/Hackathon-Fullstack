@@ -3,8 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contesxts/AuthContextProvider";
 import Loader from "../components/Loader/Loader";
 import logo from "../assets/logo1.png";
-
-import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";

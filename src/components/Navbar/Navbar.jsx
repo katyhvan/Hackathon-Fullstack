@@ -2,12 +2,10 @@ import React, { useState, useEffect } from "react";
 import logo from "../../assets/logo1.png";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../contesxts/AuthContextProvider";
-import NavItemDropDown from "./NavItemDropDown";
 import MenuDropdown from "./MenuDropdown";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import Avatar from "@mui/material/Avatar";
 import CloseIcon from "@mui/icons-material/Close";
-// import { Logout } from "@mui/icons-material";
 
 import "../../styles/Navbar.css";
 
@@ -50,8 +48,8 @@ const Navbar = () => {
             <li className="navbar-item" onClick={() => navigate("/")}>
               Home
             </li>
-            <li className="navbar-item">
-              <NavItemDropDown />
+            <li className="navbar-item" onClick={() => navigate("/courses")}>
+              Courses
             </li>
             <li className="navbar-item" onClick={() => navigate("/favorites")}>
               Favorites
@@ -72,7 +70,6 @@ const Navbar = () => {
             <Avatar
               className="right-item avatar"
               onClick={() => navigate("/login")}
-              // check this
               // src={currentUser}
               // alt={currentUser}
               style={
