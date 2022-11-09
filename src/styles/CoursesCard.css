@@ -69,3 +69,8 @@
   margin-top: 15px;
   cursor: pointer;
 }
+
+.comment-inp {
+  width: 100%;
+  min-height: 100px;
+}

@@ -18,7 +18,11 @@
 }
 
 .total-price {
+  display: flex;
+  gap: 10px;
+  align-items: center;
   margin: 1%;
+  margin-left: 55%;
   font-size: 1.5rem;
   text-transform: uppercase;
   color: rgb(33, 33, 111);
@@ -29,17 +33,23 @@
 }
 
 .shop-btn {
-  margin-left: 20px;
-  padding: 15px 20px;
-  color: #fff;
-  background: #265cb2;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
+  padding: 15px 20px !important;
+  color: #fff !important;
+  background: #265cb2 !important;
+  border: none !important;
+  border-radius: 10px !important;
+  cursor: pointer !important;
 }
 
 .shop-btn:hover {
   font-size: 20px;
+}
+
+@media (max-width: 730px) {
+  .total-price {
+    font-size: 1rem;
+    margin-left: 20%;
+  }
 }
 
 @media (max-width: 500px) {

@@ -70,8 +70,8 @@ const Navbar = () => {
             <Avatar
               className="right-item avatar"
               onClick={() => navigate("/login")}
-              // src={currentUser}
-              // alt={currentUser}
+              src={currentUser}
+              alt={currentUser}
               style={
                 currentUser
                   ? { backgroundColor: "#D87945" }

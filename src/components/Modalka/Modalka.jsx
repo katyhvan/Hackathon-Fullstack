@@ -6,9 +6,7 @@ import Modal from "@mui/material/Modal";
 import "../../styles/modalka.css";
 
 import TextField from "@mui/material/TextField";
-// import Stack from "@mui/material/Stack";
-// import Button from "@mui/material/Button";
-import PayPage from "../../pages/PayPage";
+
 import { useNavigate } from "react-router-dom";
 
 const style = {
@@ -28,11 +26,14 @@ const Modalka = () => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const Navigate = useNavigate();
+  const navigate = useNavigate();
 
   return (
     <div>
-      <Button onClick={handleOpen}> BUY NOW</Button>
+      <Button className="shop-btn" onClick={handleOpen}>
+        {" "}
+        BUY NOW
+      </Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -80,7 +81,7 @@ const Modalka = () => {
               variant="contained"
               color="success"
               style={{ width: "200px" }}
-              onClick={() => Navigate("/pay")}
+              onClick={() => navigate("/pay")}
             >
               Order
             </Button>

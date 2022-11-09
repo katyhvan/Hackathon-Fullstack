@@ -127,7 +127,7 @@ const ShopContextProvider = ({ children }) => {
     shop.totalPrice = calcTotalPrice(shop.courses);
     localStorage.setItem("shop", JSON.stringify(shop));
 
-    // getShop();
+    getShop();
 
     dispatch({
       type: SHOP.GET_SHOP_LENGTH,
