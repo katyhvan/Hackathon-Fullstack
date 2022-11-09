@@ -193,7 +193,7 @@ const CoursesList = () => {
           justifyContent: "center",
           margin: "1%",
         }}
-        count={10}
+        count={count}
         page={currentPage}
         onChange={handlePage}
       />

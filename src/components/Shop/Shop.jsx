@@ -7,6 +7,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 
 import DeleteSweepIcon from "@mui/icons-material/DeleteSweep";
+import Modalka from "../Modalka/Modalka";
 
 import "../../styles/Shop.css";
 import { TextField } from "@mui/material";
@@ -117,7 +118,9 @@ const Shop = () => {
       </Table>
       <div className="total-price">
         Total price: <span className="summary">{shop?.totalPrice}</span>
-        <button className="shop-btn">BUY NOW</button>
+        <button className="shop-btn">
+          <Modalka />
+        </button>
       </div>
     </>
   );

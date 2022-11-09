@@ -1,0 +1,36 @@
+.container {
+  width: 50%;
+  height: 500px;
+  background-color: rgb(162, 17, 368);
+  margin: 10% 20% 10% 20%;
+}
+
+.div-pay {
+  padding-left: 15%;
+  padding-top: 5%;
+  /* margin-top: 60%; */
+}
+
+.h2-h2 {
+  font-size: 50px;
+  padding-top: 2%;
+  padding-left: 30%;
+  color: rgb(233, 40, 40);
+}
+
+.inp {
+  margin-top: 20px;
+  width: 80%;
+  border: 1px solid #fff;
+}
+
+.box-box {
+  margin-top: 2px;
+  padding-left: 50px;
+}
+
+.button-b {
+  margin-top: 7% !important;
+  margin-left: 30% !important;
+  color: #fff;
+}

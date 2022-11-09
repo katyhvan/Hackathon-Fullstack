@@ -68,7 +68,7 @@ const AuthContextProvider = ({ children }) => {
         Authorization,
       },
     };
-    let res = await axios.post(`${API}accounts/logout/`, formData, config);
+    await axios.post(`${API}accounts/logout/`, formData, config);
     localStorage.removeItem("token");
     localStorage.removeItem("username");
     setCurrentUser(false);

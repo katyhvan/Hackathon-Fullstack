@@ -17,8 +17,6 @@ const EditCourse = () => {
     getCoursesDetails(id);
   }, []);
 
-  // console.log(course);
-
   useEffect(() => {
     setCourse(coursesDetails);
   }, [coursesDetails]);
@@ -42,39 +40,18 @@ const EditCourse = () => {
         [e.target.name]: e.target.value,
       };
       setCourse(obj);
-      console.log(obj);
     }
   }
 
-  // function handleInp(e) {
-  //   if (e.target.name === "price") {
-  //     let obj = {
-  //       ...course,
-  //       [e.target.name]: Number(e.target.value),
-  //     };
-  //     setCourse(obj);
-  //   } else {
-  //     let obj = {
-  //       ...course,
-  //       [e.target.name]: e.target.value,
-  //     };
-  //     setCourse(obj);
-  //     console.log(obj);
-  //   }
-  // }
+  const saveEdited = () => {
+    const formData = new FormData();
+    formData.append("title", course.title);
+    formData.append("description", course.description);
+    formData.append("price", course.price);
+    formData.append("image", course.image);
 
-  // const formData = new FormData();
-  // formData.append("title", course.title);
-  // formData.append("description", course.description);
-  // formData.append("price", course.price);
-  // formData.append("image", course.image);
-
-  // let editCourse = {
-  //   ...formData,
-  //   id: id,
-  // };
-  // setCourse(editCourse);
-  saveEditedCourse(course);
+    return formData;
+  };
 
   return (
     <>
@@ -106,18 +83,6 @@ const EditCourse = () => {
               value={course.price}
               onChange={handleInp}
             />
-            {/* <select
-              className="chooseCategory"
-              name="category"
-              onChange={handleInp}
-            >
-              <option>Choose category</option>
-              {categories?.map((item) => (
-                <option key={item.id} value={item.id}>
-                  {item.title}
-                </option>
-              ))}
-            </select> */}
             <input
               className="edit-inp"
               type="file"
@@ -128,7 +93,7 @@ const EditCourse = () => {
             <button
               className="save-btn"
               onClick={() => {
-                saveEditedCourse(course);
+                saveEditedCourse(saveEdited(), id);
                 navigate("/courses");
               }}
             >

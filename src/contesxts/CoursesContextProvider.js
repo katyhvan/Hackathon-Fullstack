@@ -149,7 +149,7 @@ const CoursesContextProvider = ({ children }) => {
   }
 
   //save
-  async function saveEditedCourse(newCourse) {
+  async function saveEditedCourse(newCourse, id) {
     console.log(newCourse);
     try {
       const token = JSON.parse(localStorage.getItem("token"));
@@ -159,7 +159,7 @@ const CoursesContextProvider = ({ children }) => {
           Authorization,
         },
       };
-      await axios.patch(`${API}courses/${newCourse.id}/`, newCourse, config);
+      await axios.patch(`${API}courses/${id}/`, newCourse, config);
       getCourses();
     } catch (err) {
       console.log(err);
