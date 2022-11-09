@@ -1,18 +1,18 @@
 import React, { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../contesxts/AuthContextProvider";
 import { coursesContext } from "../../contesxts/CoursesContextProvider";
+import { shopContext } from "../../contesxts/ShopContextProvider";
+import { favoritesContext } from "../../contesxts/FavoritesContextProvider";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import InfoSharpIcon from "@mui/icons-material/InfoSharp";
 import EditRoundedIcon from "@mui/icons-material/EditRounded";
 import DeleteSweepRoundedIcon from "@mui/icons-material/DeleteSweepRounded";
 import ShoppingBagRoundedIcon from "@mui/icons-material/ShoppingBagRounded";
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../contesxts/AuthContextProvider";
-import { shopContext } from "../../contesxts/ShopContextProvider";
 import TextsmsIcon from "@mui/icons-material/Textsms";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import StarIcon from "@mui/icons-material/Star";
@@ -26,13 +26,11 @@ const CoursesCard = ({ item }) => {
   const { deleteCourses } = useContext(coursesContext);
   const { currentUser } = useAuth();
   const { addCoursesToShop } = useContext(shopContext);
+  const { addCourseToFavorites } = useContext(favoritesContext);
   const [currentValue, setCurrentValue] = useState(0);
-
   const handleClick = (value) => {
     setCurrentValue(value);
   };
-
-  const handleFavorite = () => {};
 
   return (
     <>
@@ -71,6 +69,7 @@ const CoursesCard = ({ item }) => {
             gutterBottom
             variant="h6"
             component="div"
+            onClick={() => navigate(`/details/${item.id}`)}
           >
             {item.title}
           </Typography>
@@ -85,7 +84,7 @@ const CoursesCard = ({ item }) => {
           >
             {item.description}
           </Typography>
-          <div className="favorite">
+          <div className="favorite" onClick={() => addCourseToFavorites(item)}>
             <FavoriteIcon style={{ color: "#c81919" }} />
             <p>To Favorite</p>
           </div>

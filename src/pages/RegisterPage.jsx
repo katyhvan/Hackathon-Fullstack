@@ -38,7 +38,6 @@ const RegisterPage = () => {
       formData.append("password", password);
       formData.append("password2", password2);
       register(formData, navigate);
-      alert("You registered successfully!");
     }
   }
 

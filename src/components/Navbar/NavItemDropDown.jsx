@@ -1,17 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Fade from "@mui/material/Fade";
 import { Divider } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { coursesContext } from "../../contesxts/CoursesContextProvider";
 
 function NavItemDropDown() {
   const navigate = useNavigate();
+  const { fetchByParams } = useContext(coursesContext);
+
   const [anchorEl, setAnchorEl] = React.useState(null);
+
   const open = Boolean(anchorEl);
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -32,7 +38,7 @@ function NavItemDropDown() {
         TransitionComponent={Fade}
       >
         <MenuItem
-          onClick={() => {
+          onClick={(e) => {
             navigate("/courses");
             handleClose();
           }}
@@ -41,17 +47,8 @@ function NavItemDropDown() {
         </MenuItem>
         <Divider sx={{ my: 0.5 }} />
         <MenuItem
-          onClick={() => {
-            navigate("/js");
-            handleClose();
-          }}
-        >
-          JavaScript
-        </MenuItem>
-        <Divider sx={{ my: 0.5 }} />
-        <MenuItem
-          onClick={() => {
-            navigate("/python");
+          onClick={(e) => {
+            fetchByParams("category", "1");
             handleClose();
           }}
         >
@@ -59,17 +56,17 @@ function NavItemDropDown() {
         </MenuItem>
         <Divider sx={{ my: 0.5 }} />
         <MenuItem
-          onClick={() => {
-            navigate("/php");
+          onClick={(e) => {
+            fetchByParams("category", "2");
             handleClose();
           }}
         >
-          PHP
+          JavaScript
         </MenuItem>
         <Divider sx={{ my: 0.5 }} />
         <MenuItem
-          onClick={() => {
-            navigate("/c+");
+          onClick={(e) => {
+            fetchByParams("category", "3");
             handleClose();
           }}
         >
@@ -77,12 +74,30 @@ function NavItemDropDown() {
         </MenuItem>
         <Divider sx={{ my: 0.5 }} />
         <MenuItem
-          onClick={() => {
-            navigate("/c+");
+          onClick={(e) => {
+            fetchByParams("category", "4");
             handleClose();
           }}
         >
           C#
+        </MenuItem>
+        <Divider sx={{ my: 0.5 }} />
+        <MenuItem
+          onClick={(e) => {
+            fetchByParams("category", "5");
+            handleClose();
+          }}
+        >
+          PHP
+        </MenuItem>
+        <Divider sx={{ my: 0.5 }} />
+        <MenuItem
+          onClick={(e) => {
+            fetchByParams("category", "6");
+            handleClose();
+          }}
+        >
+          JAVA
         </MenuItem>
       </Menu>
     </div>

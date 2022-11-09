@@ -2,16 +2,14 @@ import React, { useContext, useEffect } from "react";
 import { shopContext } from "../../contesxts/ShopContextProvider";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
-import { styled } from "@mui/material/styles";
-import { tableCellClasses } from "@mui/material/TableCell";
 import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import { Typography } from "@mui/joy";
-import { Button, TextField } from "@mui/material";
+
 import DeleteSweepIcon from "@mui/icons-material/DeleteSweep";
 
 import "../../styles/Shop.css";
+import { TextField } from "@mui/material";
 
 // const StyledTableCell = styled(TableCell)(({ theme }) => ({
 //   [`&.${tableCellClasses.head}`]: {
@@ -46,23 +44,18 @@ import "../../styles/Shop.css";
 // ];
 
 const Shop = () => {
-  let {
-    shop,
-    getShop,
-    changeCourseCount,
-    parseShop,
-    deleteCoursesInShop,
-    // parseShopLength,
-  } = useContext(shopContext);
+  let { shop, getShop, changeCourseCount, parseShop, deleteCoursesInShop } =
+    useContext(shopContext);
 
   useEffect(() => {
     getShop();
     parseShop();
   }, []);
 
-  // useEffect(() => {
-  //   parseShopLength();
-  // }, []);
+  useEffect(() => {
+    getShop();
+    parseShop();
+  }, [shop]);
 
   function shopCleaner() {
     localStorage.removeItem("shop");

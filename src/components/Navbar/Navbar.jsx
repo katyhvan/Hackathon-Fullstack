@@ -14,7 +14,6 @@ import "../../styles/Navbar.css";
 const Navbar = () => {
   const { currentUser, checkAuth, handleLogout } = useAuth();
   const [menuActive, setMenuActive] = useState();
-
   const navigate = useNavigate();
 
   useEffect(() => {

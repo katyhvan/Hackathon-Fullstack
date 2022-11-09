@@ -66,7 +66,7 @@ const AddCourse = () => {
         />
         <input
           className="add-inp"
-          type="text"
+          type="number"
           value={price}
           placeholder="Price"
           onChange={(e) => setPrice(e.target.value)}

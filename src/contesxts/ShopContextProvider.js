@@ -127,22 +127,13 @@ const ShopContextProvider = ({ children }) => {
     shop.totalPrice = calcTotalPrice(shop.courses);
     localStorage.setItem("shop", JSON.stringify(shop));
 
-    getShop();
+    // getShop();
 
     dispatch({
       type: SHOP.GET_SHOP_LENGTH,
       payload: shop,
     });
   }
-
-  // function parseShopLength() {
-  //   let shop = JSON.parse(localStorage.getItem("shop"));
-  //   getShop();
-  //   dispatch({
-  //     type: SHOP.GET_SHOP_LENGTH,
-  //     payload: shop,
-  //   });
-  // }
 
   const values = {
     shop: state.shop,
@@ -153,7 +144,6 @@ const ShopContextProvider = ({ children }) => {
     changeCourseCount,
     parseShop,
     deleteCoursesInShop,
-    // parseShopLength,
   };
 
   return <shopContext.Provider value={values}>{children}</shopContext.Provider>;
