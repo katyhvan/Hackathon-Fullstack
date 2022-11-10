@@ -1,39 +1,3 @@
-.container {
-  width: 50%;
-  height: 500px;
-
-  margin: 10% 20% 10% 20%;
-}
-
-.div-pay {
-  padding-left: 15%;
-  padding-top: 5%;
-}
-
-.h2-h2 {
-  font-size: 50px;
-  padding-top: 2%;
-  padding-left: 30%;
-  color: rgb(233, 40, 40);
-}
-
-.inp {
-  margin-top: 20px;
-  width: 80%;
-  border: 1px solid #fff;
-}
-
-.box-box {
-  margin-top: 2px;
-  padding-left: 50px;
-}
-
-.button-b {
-  margin-top: 7% !important;
-  margin-left: 30% !important;
-  color: #fff;
-}
-
 #PaymentForm {
   background-color: #3072a4;
   background: radial-gradient(
@@ -71,4 +35,23 @@
   background: rgba(76, 130, 188, 0.769);
   padding: 10px 20px;
   cursor: pointer;
+}
+
+@media (max-width: 950px) {
+  #PaymentForm {
+    width: 50%;
+  }
+}
+
+@media (max-width: 550px) {
+  #PaymentForm {
+    width: 70%;
+  }
+}
+
+@media (max-width: 380px) {
+  #PaymentForm {
+    width: 90%;
+    padding: 0;
+  }
 }
