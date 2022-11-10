@@ -1,4 +1,3 @@
-/* content 1 start */
 .div-1 {
   background: -webkit-linear-gradient(
     180deg,
@@ -42,10 +41,8 @@
   font-size: 110%;
   color: white;
 }
-/* content 1 end */
 
 .par-content2-1 {
-  /* margin-top: 4px; */
   color: #fff;
   text-align: center;
 }
@@ -121,7 +118,7 @@
   max-width: 450px;
   font-family: "Roboto";
 }
-*/ .div-1 {
+.div-1 {
   background: -webkit-linear-gradient(
     180deg,
     rgb(43, 12, 123) 1%,
@@ -160,7 +157,7 @@
   font-size: 110%;
   color: white;
 }
-/* content 1 end */
+
 .h2-1 {
   color: rgb(196, 157, 77);
   text-align: center;
@@ -171,7 +168,6 @@
   padding: 15% 0 0 0;
 }
 .par-content2-1 {
-  /* margin-top: 4px; */
   color: rgba(255, 255, 255, 0.832);
   text-align: center;
 }
@@ -238,9 +234,7 @@
   );
   background: linear-gradient(180deg, rgb(150, 26, 236), rgb(26, 153, 236));
 }
-/* content 2 end */
 
-/* content 3 start */
 .h3-content3 {
   text-align: center;
   font-size: 40px;
@@ -279,18 +273,8 @@
   background: linear-gradient(180deg, rgb(26, 153, 236), rgb(43, 12, 123));
   padding-bottom: 15%;
 }
-/* content 3 end */
 
-/* content 4 start  */
 .div-content4-block {
-  /* background: -webkit-linear-gradient(
-    0deg,
-    rgb(133, 7, 238) 3%,
-    rgb(0, 8, 255)
-  );
-  background: -moz-linear-gradient(0deg, rgb(133, 7, 238) 33%, rgb(0, 8, 255));
-  background: linear-gradient(0deg, rgb(133, 7, 238) 33%, rgb(0, 8, 255)); */
-
   padding-top: 5%;
 }
 

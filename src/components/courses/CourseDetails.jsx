@@ -21,7 +21,8 @@ const stars = Array(5).fill(0);
 const CourseDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { coursesDetails, getCoursesDetails } = useContext(coursesContext);
+  const { coursesDetails, getCoursesDetails, getComments } =
+    useContext(coursesContext);
 
   console.log(coursesDetails);
 
@@ -30,6 +31,7 @@ const CourseDetails = () => {
 
   useEffect(() => {
     getCoursesDetails(id);
+    getComments(id);
   }, []);
 
   const handleClick = (value) => {
@@ -112,6 +114,7 @@ const CourseDetails = () => {
                 </div>
               </div>
             </div>
+            
           </>
         ) : (
           <Loader />

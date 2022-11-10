@@ -1,0 +1,21 @@
+#modal-modal-description {
+  text-align: center !important;
+  justify-content: center;
+}
+
+.modalka-box {
+  margin-top: 100px !important;
+}
+
+.modalka-text {
+  margin-top: 20px !important;
+}
+
+#outlined-basic {
+  width: 40px;
+}
+
+.modalka-button {
+  margin-top: 20px !important;
+  width: 600px;
+}

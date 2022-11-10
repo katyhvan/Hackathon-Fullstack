@@ -15,6 +15,7 @@ import FavoritesPage from "./pages/FavoritesPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import AdminPage from "./pages/AdminPage";
 import RestorePage from "./pages/RestorePage";
+import PayPage from "./pages/PayPage";
 
 const PAGES_ROUTES = [
   {
@@ -71,6 +72,11 @@ const PAGES_ROUTES = [
     link: "/restore",
     element: <RestorePage />,
     id: 11,
+  },
+  {
+    link: "/pay",
+    element: <PayPage />,
+    id: 12,
   },
 ];
 

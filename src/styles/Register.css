@@ -79,3 +79,27 @@
   font-size: 20px;
   font-family: "Roboto";
 }
+
+@media (max-width: 930px) {
+  .login-form,
+  .register-form,
+  .restore-form {
+    width: 50%;
+  }
+}
+
+@media (max-width: 460px) {
+  .login-form,
+  .register-form,
+  .restore-form {
+    width: 70%;
+  }
+}
+
+@media (max-width: 330px) {
+  .login-form,
+  .register-form,
+  .restore-form {
+    width: 80%;
+  }
+}

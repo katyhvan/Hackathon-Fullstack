@@ -104,12 +104,16 @@ const HomePage = () => {
               width: 400,
             }}
           >
-            {/* <IconButton sx={{ p: "10px" }} aria-label="menu">
-              <IconButton type="button" sx={{ p: "10px" }} aria-label="search">
+            <IconButton sx={{ p: "10px" }} aria-label="menu">
+              <IconButton
+                type="button"
+                sx={{ p: "10px" }}
+                aria-label="search"
+                onClick={() => navigate("/courses")}
+              >
                 <SearchIcon />
               </IconButton>
-            </IconButton> */}
-
+            </IconButton>
             <InputBase
               sx={{ ml: 1, flex: 1 }}
               placeholder="Search..."

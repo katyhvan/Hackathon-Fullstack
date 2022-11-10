@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -9,7 +9,7 @@ const INIT_STATE = {
   categories: [],
   levels: [],
   coursesDetails: [],
-  reviews: [],
+  comments: [],
 };
 
 function reducer(state = INIT_STATE, action) {
@@ -34,10 +34,10 @@ function reducer(state = INIT_STATE, action) {
         ...state,
         levels: action.payload,
       };
-    case "GET_REVIEWS":
+    case "GET_comments":
       return {
         ...state,
-        reviews: action.payload,
+        comments: action.payload,
       };
     default:
       return state;
@@ -48,6 +48,7 @@ const API = "http://34.130.53.80/api/v1/";
 
 const CoursesContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, INIT_STATE);
+  const [error, setError] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -131,6 +132,7 @@ const CoursesContextProvider = ({ children }) => {
       getCourses();
     } catch (err) {
       console.log(err);
+      alert("Only owner can delete this course!");
     }
   }
 
@@ -149,8 +151,7 @@ const CoursesContextProvider = ({ children }) => {
   }
 
   //save
-  async function saveEditedCourse(newCourse) {
-    console.log(newCourse);
+  async function saveEditedCourse(newCourse, id) {
     try {
       const token = JSON.parse(localStorage.getItem("token"));
       const Authorization = `Token ${token.access}`;
@@ -159,10 +160,12 @@ const CoursesContextProvider = ({ children }) => {
           Authorization,
         },
       };
-      await axios.patch(`${API}courses/${newCourse.id}/`, newCourse, config);
+      await axios.patch(`${API}courses/${id}/`, newCourse, config);
       getCourses();
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      setError([error.response.data.detail]);
+      console.log(error);
+      alert("Only owner can change this course!");
     }
   }
 
@@ -181,14 +184,36 @@ const CoursesContextProvider = ({ children }) => {
     navigate(url);
   };
 
-  //reviews
-  async function getReviews(id) {
+  //comments
+  async function getComments(id) {
     try {
-      const res = await axios(`${API}courses/${id}/reviews/`);
+      const res = await axios(`${API}courses/${id}/commentss/`);
       dispatch({
-        type: "GET_REVIEWS",
+        type: "GET_COMMENTS",
         payload: res.data,
       });
+      console.log(res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async function addCommentsToCourse(newComment, id) {
+    try {
+      const token = JSON.parse(localStorage.getItem("token"));
+      const Authorization = `Token ${token.access}`;
+      const config = {
+        headers: {
+          Authorization,
+        },
+      };
+
+      const res = await axios(
+        `${API}courses/${id}/commentss/`,
+        newComment,
+        config
+      );
+      getCourses();
     } catch (err) {
       console.log(err);
     }
@@ -201,7 +226,8 @@ const CoursesContextProvider = ({ children }) => {
         categories: state.categories,
         levels: state.levels,
         coursesDetails: state.coursesDetails,
-        reviews: state.reviews,
+        comments: state.comments,
+        error,
 
         addCourse,
         getCourses,
@@ -210,8 +236,10 @@ const CoursesContextProvider = ({ children }) => {
         deleteCourses,
         getCoursesDetails,
         saveEditedCourse,
-        getReviews,
         fetchByParams,
+        getComments,
+        addCommentsToCourse,
+        setError,
       }}
     >
       {children}

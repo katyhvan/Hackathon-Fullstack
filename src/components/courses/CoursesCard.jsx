@@ -16,21 +16,53 @@ import ShoppingBagRoundedIcon from "@mui/icons-material/ShoppingBagRounded";
 import TextsmsIcon from "@mui/icons-material/Textsms";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import StarIcon from "@mui/icons-material/Star";
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+import TextField from "@mui/material/TextField";
 
 import "../../styles/CoursesCard.css";
 
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
 const stars = Array(5).fill(0);
 
 const CoursesCard = ({ item }) => {
   const navigate = useNavigate();
-  const { deleteCourses } = useContext(coursesContext);
+  const { deleteCourses, addCommentsToCourse } = useContext(coursesContext);
   const { currentUser } = useAuth();
   const { addCoursesToShop } = useContext(shopContext);
   const { addCourseToFavorites } = useContext(favoritesContext);
+
   const [currentValue, setCurrentValue] = useState(0);
+  const [open, setOpen] = React.useState(false);
+  const [comment, setComment] = useState("");
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   const handleClick = (value) => {
     setCurrentValue(value);
   };
+
+  function handleComment() {
+    if (!comment.trim()) {
+      alert("Please tipps some text!");
+      return;
+    }
+
+    let newComment = new FormData();
+    newComment.append("comment", comment);
+    addCommentsToCourse(newComment);
+    alert("Successfully added comments!");
+  }
 
   return (
     <>
@@ -57,7 +89,6 @@ const CoursesCard = ({ item }) => {
                     handleClick(index + 1);
                   }}
                 />
-                {/* <span>{item.rating_count}</span> */}
               </>
             );
           })}
@@ -84,6 +115,28 @@ const CoursesCard = ({ item }) => {
           >
             {item.description}
           </Typography>
+          <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <Box sx={style}>
+              <TextField
+                className="comment-inp"
+                value={comment}
+                onChange={(e) => setComment(e.target.value)}
+              />
+              <button
+                onClick={() => {
+                  handleComment();
+                  handleClose();
+                }}
+              >
+                Send
+              </button>
+            </Box>
+          </Modal>
           <div className="favorite" onClick={() => addCourseToFavorites(item)}>
             <FavoriteIcon style={{ color: "#c81919" }} />
             <p>To Favorite</p>
@@ -110,7 +163,7 @@ const CoursesCard = ({ item }) => {
             className="icon shop-icon"
             onClick={() => addCoursesToShop(item)}
           />
-          <TextsmsIcon className="icon comment-icon" />
+          <TextsmsIcon className="icon comment-icon" onClick={handleOpen} />
         </CardActions>
       </Card>
     </>

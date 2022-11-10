@@ -38,6 +38,11 @@ const RegisterPage = () => {
       formData.append("password", password);
       formData.append("password2", password2);
       register(formData, navigate);
+
+      setUsername("");
+      setEmail("");
+      setPassword("");
+      setPassword2("");
     }
   }
 
