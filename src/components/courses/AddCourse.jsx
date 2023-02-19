@@ -30,7 +30,6 @@ const AddCourse = () => {
     }
 
     let newCourse = new FormData();
-    newCourse.append("image", image);
     newCourse.append("title", title);
     newCourse.append("description", description);
     newCourse.append("price", price);
