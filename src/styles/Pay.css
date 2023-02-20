@@ -1,0 +1,57 @@
+#PaymentForm {
+  background-color: #3072a4;
+  background: radial-gradient(
+    circle,
+    rgba(174, 238, 204, 1) 0%,
+    rgba(161, 213, 218, 1) 51%,
+    rgba(148, 187, 233, 1) 100%
+  );
+  padding: 30px;
+  width: 30%;
+  margin: 20px auto;
+  border-radius: 20px;
+}
+
+.inputs-pay {
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+  width: 60%;
+  margin: 2% auto;
+}
+
+.inp-pay {
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: 1px solid grey;
+  outline: rgb(46, 97, 218);
+}
+
+.pay-btn {
+  margin: 15px auto;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  background: rgba(76, 130, 188, 0.769);
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+@media (max-width: 950px) {
+  #PaymentForm {
+    width: 50%;
+  }
+}
+
+@media (max-width: 550px) {
+  #PaymentForm {
+    width: 70%;
+  }
+}
+
+@media (max-width: 380px) {
+  #PaymentForm {
+    width: 90%;
+    padding: 0;
+  }
+}

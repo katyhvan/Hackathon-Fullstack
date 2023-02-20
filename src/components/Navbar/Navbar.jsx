@@ -2,18 +2,16 @@ import React, { useState, useEffect } from "react";
 import logo from "../../assets/logo1.png";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../contesxts/AuthContextProvider";
-import NavItemDropDown from "./NavItemDropDown";
 import MenuDropdown from "./MenuDropdown";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import Avatar from "@mui/material/Avatar";
-// import { Logout } from "@mui/icons-material";
+import CloseIcon from "@mui/icons-material/Close";
 
 import "../../styles/Navbar.css";
 
 const Navbar = () => {
   const { currentUser, checkAuth, handleLogout } = useAuth();
   const [menuActive, setMenuActive] = useState();
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -37,7 +35,10 @@ const Navbar = () => {
           <img src={logo} alt="logo" className="logo" />
           <h2 className="logo-title">Medemy</h2>
         </div>
-        <div className="burger-menu" onClick={() => setMenuActive(!menuActive)}>
+        <div
+          className={menuActive ? <CloseIcon /> : "burger-menu"}
+          onClick={() => setMenuActive(!menuActive)}
+        >
           <div className="burger-btn"></div>
           <div className="burger-btn"></div>
           <div className="burger-btn"></div>
@@ -47,8 +48,8 @@ const Navbar = () => {
             <li className="navbar-item" onClick={() => navigate("/")}>
               Home
             </li>
-            <li className="navbar-item">
-              <NavItemDropDown />
+            <li className="navbar-item" onClick={() => navigate("/courses")}>
+              Courses
             </li>
             <li className="navbar-item" onClick={() => navigate("/favorites")}>
               Favorites
@@ -63,15 +64,14 @@ const Navbar = () => {
         <div className="navbar-right">
           <ul className="right-menu">
             <ShoppingBagIcon
-              className="right-item"
-              onClick={() => navigate("/cart")}
+              className="right-item icon-bag"
+              onClick={() => navigate("/shop")}
             />
             <Avatar
               className="right-item avatar"
               onClick={() => navigate("/login")}
-              // check this
-              // src={currentUser}
-              // alt={currentUser}
+              src={currentUser}
+              alt={currentUser}
               style={
                 currentUser
                   ? { backgroundColor: "#D87945" }

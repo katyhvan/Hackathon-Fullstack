@@ -1,12 +1,10 @@
-import { MarkEmailUnread } from "@mui/icons-material";
-import axios from "axios";
 import React, { useContext, useState } from "react";
+import axios from "axios";
 
-const authContext = React.createContext();
+export const authContext = React.createContext();
 export const useAuth = () => useContext(authContext);
 
-const API = "http://34.28.29.118/api/v1/";
-// http://34.28.29.118/api/v1/accounts/logout/
+const API = "http://34.130.53.80/api/v1/";
 
 const AuthContextProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(false);
@@ -19,8 +17,9 @@ const AuthContextProvider = ({ children }) => {
     try {
       const res = await axios.post(`${API}accounts/register/`, formData);
       navigate("/login");
+      alert("You registered successfully!");
     } catch (err) {
-      setError(Object.values(err.response.data).flat(2));
+      setError(Object.values(err.response.data));
       console.log(err);
     } finally {
       setLoading(false);
@@ -60,18 +59,16 @@ const AuthContextProvider = ({ children }) => {
       );
     } catch (error) {}
   }
-  // const token = JSON.parse(localStorage.getItem("token"));
-  // alert(token.refresh);
+
   async function handleLogout(formData, navigate) {
     const token = JSON.parse(localStorage.getItem("token"));
-    // const refresh = JSON.parse(localStorage.getItem("token", token.refresh));
     const Authorization = `Token ${token.access}`;
     const config = {
       headers: {
         Authorization,
       },
     };
-    let res = await axios.post(`${API}accounts/logout/`, formData, config);
+    await axios.post(`${API}accounts/logout/`, formData, config);
     localStorage.removeItem("token");
     localStorage.removeItem("username");
     setCurrentUser(false);
@@ -83,6 +80,8 @@ const AuthContextProvider = ({ children }) => {
 
     try {
       const res = await axios.post(`${API}accounts/forgot/`, formData);
+      setLoading(false);
+
       navigate("/restore");
       alert("Code has been sent to your E-Mail");
     } catch (err) {
@@ -91,9 +90,13 @@ const AuthContextProvider = ({ children }) => {
   }
 
   async function passRecovery(formData, navigate) {
-    const res = await axios.post(`${API}accounts/restore/`, formData);
-    navigate("/");
-    alert("Your password has been recovered!");
+    try {
+      const res = await axios.post(`${API}accounts/restore/`, formData);
+      navigate("/login");
+      setLoading(false);
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   const values = {

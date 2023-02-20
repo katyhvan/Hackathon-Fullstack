@@ -1,0 +1,37 @@
+.div-footer {
+  background-color: rgb(30, 4, 98);
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.div-content4-2 {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  opacity: 60%;
+  color: white;
+}
+
+.div-icon {
+  text-align: center;
+  padding: 20px;
+}
+
+.img-content4 {
+  display: none;
+}
+
+.div-content4-2 {
+  padding: 20px;
+}
+
+.img-content4-2 {
+  margin-right: 10px;
+}
+
+@media (max-width: 400px) {
+  .div-footer {
+    width: 100%;
+  }
+}

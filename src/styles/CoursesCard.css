@@ -2,3 +2,80 @@
   height: 250px;
   width: 100%;
 }
+
+.card {
+  margin: 15px;
+}
+
+.card-title {
+  height: 50px;
+  cursor: pointer;
+}
+
+.card-title:hover {
+  text-decoration: underline;
+}
+
+.card-desc {
+  margin-top: 7px;
+  height: 80px;
+  overflow: auto;
+}
+
+.icons-block {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.icon {
+  font-size: 40px !important;
+  cursor: pointer;
+}
+
+.info-icon {
+  color: rgb(25, 25, 86);
+}
+
+.edit-icon {
+  color: #ce4800;
+}
+
+.delete-icon {
+  color: #b22626;
+}
+
+.shop-icon {
+  color: #8e3c54;
+}
+
+.comment-icon {
+  color: #579394;
+}
+
+.rating-stars {
+  margin: 10px !important;
+  cursor: pointer;
+}
+
+.favorite {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid grey;
+  border-radius: 5px;
+  text-transform: uppercase;
+  margin-top: 15px;
+  cursor: pointer;
+}
+
+.comment-inp {
+  width: 100%;
+  min-height: 100px;
+}
+
+.send-btn {
+  border: none;
+  padding: 10px 15px;
+}

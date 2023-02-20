@@ -1,5 +1,56 @@
 .courses-list {
   display: flex;
-  justify-content: space-around;
-  margin: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1px;
+}
+
+.inp-search {
+  font-size: 18px;
+  margin: 20px;
+  padding: 10px 15px;
+  border: 0.5px solid grey;
+  border-radius: 15px;
+  height: 15%;
+  width: 40vw;
+}
+
+.inp-search:hover {
+  outline: 0.5px solid blueviolet;
+}
+
+.inp-courses {
+  display: flex;
+  justify-content: center;
+}
+
+.filter-block {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.language {
+  color: #fff;
+  background: rgb(78, 78, 164);
+  padding: 8px 13px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.java {
+  margin-right: 10px;
+}
+
+@media (max-width: 730px) {
+  .inp-courses {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 450px) {
+  .filter-block {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }

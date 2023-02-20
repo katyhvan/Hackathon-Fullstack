@@ -1,0 +1,71 @@
+.shop-titles {
+  display: flex;
+  justify-content: space-around;
+}
+
+.shop-text {
+  display: flex;
+}
+
+.MuiTable-root {
+  width: 100vw;
+}
+
+.delete-shop {
+  color: #b22626;
+  cursor: pointer;
+  font-size: 40px !important;
+}
+
+.total-price {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin: 1%;
+  margin-left: 55%;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  color: rgb(33, 33, 111);
+}
+
+.summary {
+  color: rgb(41, 147, 71);
+}
+
+.shop-btn {
+  padding: 15px 20px !important;
+  color: #fff !important;
+  background: #265cb2 !important;
+  border: none !important;
+  border-radius: 10px !important;
+  cursor: pointer !important;
+}
+
+.shop-btn:hover {
+  font-size: 20px;
+}
+
+@media (max-width: 730px) {
+  .total-price {
+    font-size: 1rem;
+    margin-left: 20%;
+  }
+}
+
+@media (max-width: 500px) {
+  .shop-img {
+    display: none !important;
+  }
+}
+
+@media (max-width: 370px) {
+  .total-price {
+    font-size: 18px;
+  }
+  .shop-btn {
+    padding: 8px 16px;
+  }
+  .MuiTableCell-root {
+    padding: 5px !important;
+  }
+}

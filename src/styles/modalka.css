@@ -1,0 +1,37 @@
+#modal-modal-description {
+  text-align: center !important;
+  justify-content: center;
+}
+
+.MuiBackdrop-root {
+  max-height: 400px;
+}
+
+.modalka-box {
+  margin-top: 30px !important;
+}
+
+.modalka-text {
+  margin-top: 20px !important;
+}
+
+#outlined-basic {
+  width: 40px;
+}
+
+.modalka-button {
+  margin-top: 20px !important;
+  width: 300px;
+}
+
+@media (max-width: 470px) {
+  .modalka-box {
+    width: 50% !important;
+  }
+}
+
+@media (max-width: 360px) {
+  .modalka-box {
+    width: 70% !important;
+  }
+}
