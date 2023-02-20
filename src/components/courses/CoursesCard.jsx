@@ -128,6 +128,7 @@ const CoursesCard = ({ item }) => {
                 onChange={(e) => setComment(e.target.value)}
               />
               <button
+                className="send-btn"
                 onClick={() => {
                   handleComment();
                   handleClose();

@@ -43,7 +43,7 @@ const images = [
     imgPath: mentor1,
   },
   {
-    label: "Эмир Ажанкимов",
+    label: "Эмир Акимжанов",
     imgPath: mentor9,
   },
   {

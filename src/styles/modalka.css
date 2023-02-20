@@ -3,8 +3,12 @@
   justify-content: center;
 }
 
+.MuiBackdrop-root {
+  max-height: 400px;
+}
+
 .modalka-box {
-  margin-top: 100px !important;
+  margin-top: 30px !important;
 }
 
 .modalka-text {
@@ -17,5 +21,17 @@
 
 .modalka-button {
   margin-top: 20px !important;
-  width: 600px;
+  width: 300px;
+}
+
+@media (max-width: 470px) {
+  .modalka-box {
+    width: 50% !important;
+  }
+}
+
+@media (max-width: 360px) {
+  .modalka-box {
+    width: 70% !important;
+  }
 }

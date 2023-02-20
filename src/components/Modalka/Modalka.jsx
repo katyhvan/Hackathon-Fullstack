@@ -31,10 +31,10 @@ const Modalka = () => {
   return (
     <div>
       <Button className="shop-btn" onClick={handleOpen}>
-        {" "}
         BUY NOW
       </Button>
       <Modal
+        className="modal-order"
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
